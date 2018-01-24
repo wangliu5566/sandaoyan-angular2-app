@@ -1,0 +1,239 @@
+page-ivr {
+    #IVRcontainer {
+        width: 100%;
+        height: calc(100% - 95px);
+        .amap-marker-label {
+            font-size: 12px;
+            border: none;
+            background: #fff;
+            border-radius: 4px;
+            color: #333;
+            box-shadow: 0 1px 3px rgba(0,0,0,.2);
+            padding: 4px 5px 2px;
+        }
+        .amap-info-outer,
+        .amap-info-content {
+            background-color: transparent;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            overflow: inherit;
+            .info-title {
+                background-color: rgba(0, 0, 0, .8);
+                border-radius: 8px 8px 0 0;
+                border: none;
+                box-shadow: 0 1px 5px rgba(107, 107, 107, 0.6);
+                padding: 10px;
+                color: #fff;
+                font-size: 15px;
+            }
+            .info-content {
+                width: 290px;
+                background-color: rgba(255, 255, 255, .8);
+                border-radius: 0 0 8px 8px;
+                border: none;
+                box-shadow: 0 1px 5px rgba(107, 107, 107, 0.6);
+                padding: 10px;
+                .nopermission img {
+                    width: 92px;
+                    height: 92px;
+                    border-radius: 8px;
+                }
+                .info-con {
+                    width: calc(100% - 105px);
+                    float: right;
+                    color: #121c29;
+                    font-size: 14px;
+                    .info-con-span{
+                        overflow : hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical; 
+                        height: 56px;
+                    }
+                    .ivr_button {
+                        border: solid 1px #c62707;
+                        color: #c62707;
+                        margin-top: 6px;
+                        border-radius: 4px;
+                        background-color: transparent;
+                        padding: 6px;
+                        float: right;
+                        margin-right: 10px;
+                    }
+                    .unpurchased{
+                        width: 100%;
+                        text-align: center;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+        .amap-info-close {
+            color: #fff;
+            top: 12px;
+            right: 12px;
+        }
+        .amap-info-sharp {
+            background: none;
+            position: relative;
+        }
+        .amap-info-sharp:after {
+            position: absolute;
+            top: 1px;
+            left: 0;
+            width: 0;
+            height: 0;
+            content: "";
+            border-top: solid 14px rgba(255, 255, 255, .8);
+            border-left: solid 14px transparent;
+            border-right: solid 14px transparent;
+        }
+    }
+    .IVRind {
+        .IVRind_name {
+            font-size: 14px;
+            color: #121c29;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+        }
+        .IVRind_play_container {
+            text-align: center;
+            position: relative;
+            &::after {
+                position: absolute;
+                width: 42%;
+                height: 0;
+                content: "";
+                border-bottom: solid 1px #8ca7ca;
+                left: 0;
+                top: 50%;
+            }
+            &::before {
+                position: absolute;
+                width: 42%;
+                height: 0;
+                content: "";
+                border-bottom: solid 1px #8ca7ca;
+                right: 0;
+                top: 50%;
+            }
+            .IVRind_img {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                display: inline-block;
+                margin: 0 auto;
+                border: solid 2px #8ba7cc;
+                position: relative;
+                .audiocontrols {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: 0;
+                }
+                .aplayer {
+                    box-shadow: none;
+                    margin: 0;
+                    .aplayer-info {
+                        padding-top: 0;
+                        padding-left: 0;
+                        margin-left: 55px;
+                        height: 44px; 
+                        .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+                            background-color: #c62707;
+                            .aplayer-thumb {
+                                background-color: #c62707;
+                                border-color: #c62707;
+                            }
+                        }
+                    }
+                    .aplayer-pic {
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 44px;
+                        &.animat{
+                            animation: circle 2s infinite linear;
+                            -webkit-animation: circle 2s infinite linear;
+                        }
+                        img {
+                            border-radius: 44px;
+                            // -webkit-animation: circle 2s infinite linear;
+                            /*匀速 循环*/
+                        }
+                        .aplayer-play {
+                            background: url("../../../assets/images/bofang.png") center center no-repeat;
+                            border: none;
+                            margin: -12px 0 0 -12px;
+                            z-index: 3;
+                            &.aplayer-button{
+                                opacity: 1;
+                            }
+                            .aplayer-icon{
+                                opacity: 1;
+                            }
+                            .aplayer-icon-play:before {
+                                content: "";
+                            }
+                            svg {
+                                opacity: 0;
+                            }
+                        }
+                        .aplayer-pause {
+                            background: url("../../../assets/images/zanting.png") center center no-repeat;
+                            border: none;
+                            width: 20px;
+                            height: 20px;
+                            top: 50%;
+                            left: 50%;
+                            margin: -10px 0 0 -12px;
+                            z-index: 3;
+                            &.aplayer-button{
+                                opacity: 1;
+                            }
+                            .aplayer-icon{
+                                opacity: 1;
+                            }
+                            .aplayer-icon-pause:before {
+                                content: "";
+                            }
+                            svg {
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+                // .IVRind_img_js {
+                //     img {
+                //         width: 42px;
+                //         height: 42px;
+                //         border-radius: 50%;
+                //         -webkit-animation: circle 1s infinite linear;
+                //         /*匀速 循环*/
+                //     }
+                // }
+                // .bofang {
+                //     position: absolute;
+                //     top: 50%;
+                //     left: 50%;
+                //     margin-left: -9px;
+                //     margin-top: -11px;
+                // }
+            }
+        }
+    }
+    @-webkit-keyframes circle {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(-360deg);
+        }
+    }
+}

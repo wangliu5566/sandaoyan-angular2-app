@@ -1,0 +1,37 @@
+page-user-ping {
+      .userLi{display: block;clear: both;padding-top: 1rem}
+      .star-level {
+          margin-top: 0;
+          margin-bottom: 20px;
+          .star {
+              margin-right: 10px;
+              .star-default {
+                  top: 4px;
+                  position: relative;
+                  background: url("../assets/images/icons_starts2.png") center bottom no-repeat;
+                  background-size: contain;
+                  width: 15px;
+                  height: 14px;
+                  display: inline-block;
+              }
+              .star-yellow {
+                  top: 4px;
+                  position: relative;
+                  background: url("../assets/images/icons_starts1.png") center bottom no-repeat;
+                  background-size: contain;
+                  width: 15px;
+                  height: 14px;
+                  display: inline-block;
+              }
+              .icon-stars-svg {
+                  width: 15px;
+                  height: 14px;
+              }
+          }
+          .per-capita {
+              color: #666;
+              position: relative;
+              top: 2px;
+          }
+      }
+}

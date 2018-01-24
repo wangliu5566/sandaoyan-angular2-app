@@ -1,0 +1,115 @@
+movie-ind {
+    background: #fff;
+    .movieind_head {
+        background: #fff;
+        height: real(88);
+        line-height: real(88);
+        padding: 0 1rem;
+    }
+    .movieind_box {
+        background: url(/assets/images/movin_picbg01.png) 0 0 no-repeat;
+        background-size: cover;
+        height: real(320);
+        border-bottom: #ddd solid 1px;
+        .movieind_banner {
+            .sign01 {
+                position: absolute;
+                top: 0;
+                right: 0;
+                img {
+                    width: 30px;
+                }
+            }
+            .swiper-slide {
+                -webkit-transform: scale(.838709677419355) translateX(-.34375em);
+                transform: scale(.838709677419355) translateX(-.34375em);
+                position: relative;
+            }
+            .swiper-slide-active {
+                // width: 110px !important;
+                -webkit-transform: scale(1) translateX(-0.34375em);
+                transform: scale(1) translateX(-0.34375em);
+                // -webkit-transition: ease-in-out .2s;
+                // transition: ease-in-out .2s;
+                >img {
+                    border: #fff solid 1px;
+                }
+                .sign01 img {
+                    width: 40px;
+                }
+            }
+        }
+    }
+    ion-scroll[scrollX] {
+        white-space: nowrap;
+        .scroll-item {
+            display: inline-block;
+        }
+    }
+    .conent_slt {
+        .title_box {
+            background: #fff;
+            height: real(88);
+            line-height: real(87);
+        }
+        .title_box:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 0;
+            border-bottom: #eee solid 1px;
+        }
+        .title_box ul li {
+            float: left;
+            width: real(200);
+            text-align: center;
+        }
+        .title_box ul li.active {
+            border-bottom: #000 solid 1px;
+        }
+        // .conent_com {}
+    }
+}
+
+.mov-modal-box {
+    ion-backdrop {
+        visibility: visible;
+        z-index: 0;
+    }
+}
+
+mov-modal {
+    .mov_pic {
+        min-height: 130px;
+    }
+    .mov_modal {
+        width: 92%;
+        position: fixed;
+        z-index: 100;
+        background-color: #fff;
+        top: 15%;
+        left: 4%;
+        padding: 10px 15px;
+        .mov_intro {
+            max-height: 140px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+        .mov_modal_close {
+            position: absolute;
+            top: -40px;
+            right: -5px;
+        }
+        .mov_modal_other ul>li {
+            float: left;
+            width: 57px;
+            margin-right: 10px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}

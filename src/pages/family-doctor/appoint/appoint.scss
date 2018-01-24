@@ -1,0 +1,15 @@
+page-appoint {
+  .main{width:100%;height:auto;background-color: #e5e5e5;overflow: hidden;}
+  button{-webkit-appearance: none;}
+  //.top{width:100%;height:auto;background-color: #fff;line-height: 22px;font-size: 14px;color:#666;padding-bottom: 10px;}
+  .box{width:100%;height:auto;background-color: #fff;border-bottom: 5px solid #ddd;line-height: 24px;font-size: 14px;margin-top:10px;padding-bottom: 10px;color:#666;}
+  .box img{width:100%;height:auto;}
+  .top h4,.box h4{font-size: 16px;margin:10px auto 10px;color:#333;width:94%;}
+  .text{width:94%;margin:auto;}
+  .appoint-btn{width:30%;height: 40px;text-align: center;line-height: 40px;border-radius: 3px;background:#ddd;display:block;margin:10px auto 10px;}
+  .open{text-align: center;}
+  .open p:first-of-type{font-size: 12px;margin-top:6px;}
+  .open p:last-of-type{font-size: 25px;}
+  //.box .text{overflow: hidden;height:45px;}
+  #open-icon.up{transform: rotate(180deg);margin-top:-8px;}
+}

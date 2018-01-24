@@ -1,0 +1,88 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{order_data.itemName}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content overflow-scroll="true">
+    <!--订单信息-->
+    <div class="orders-detail-info">
+        <ion-list (click)="gotoprodec(order_data.itemId)">
+            <ion-item>
+                <ion-thumbnail item-start>
+                    <img [src]="order_data.orderImage">
+                </ion-thumbnail>
+                <h2 class="cf">
+                    <span class="f_l">{{order_data.itemName}}</span>
+                    <span style="float:right">{{order_data.status}}</span>
+                </h2>
+                <p class="f16 g9">券码数量：{{order_data.number || '1'}}</p>
+                <p style="color:black">&yen;  免费</p>
+                <!-- <p class="order-price" *ngFor="let couponcodes of order_data.localOrderItemList | slice:0:1">
+                    <span class="f16">￥{{couponcodes.salePrice/100.00 | number:'1.1-2'}}</span>
+                    <del class="g9 f14 ml10">￥{{couponcodes.marketPrice/100.00 | number:'1.1-2'}}</del>
+                </p> -->
+            </ion-item>
+        </ion-list>
+        <p class="merit">
+            <span *ngIf="order_data.nowReturn==1"><i class="icon iconfont icon-xuanzhong"></i>随时退</span>
+            <span *ngIf="order_data.outdateReturn==1"><i class="icon iconfont icon-xuanzhong"></i>过期退</span>
+            <span *ngIf="order_data.unReservation==1"><i class="icon iconfont icon-xuanzhong"></i>免预约</span>
+            <span *ngIf="order_data.canAppend==1"><i class="icon iconfont icon-xuanzhong"></i>可叠加</span>
+        </p>
+    </div>
+    <p class="bb6"></p>
+    <!--商品券码-->
+    <div *ngIf="order_data.status!='waitingPay'">
+        <!--*ngIf="order_data.status!='waitingPay'"-->
+        <div padding class="coupons-code cf">
+            <h6 class="h_style cf">
+                <span class="f_l"><i class="icon iconfont icon-title_line"></i>商品券码</span>
+                <!--*ngIf="order_data.status=='canUse'"-->
+            </h6>
+            <p class="erweima">
+                <img [src]="order_data.useQrCode">
+            </p>
+            <p class="code pt10 cf"  >
+                <span class="f_l">券码1：{{order_data.orderNo}}</span>
+                <span style="float:right">{{order_data.status}}</span>
+
+
+            </p>
+        </div>
+        <p class="bb6"></p>
+    </div>
+
+    <!--商家信息-->
+    <div padding class="business-msg cf" >
+        <h6 class="h_style cf">
+            <span class="f_l"><i class="icon iconfont icon-title_line"></i>商家信息</span>
+            <em class="f_r"><a [href]="listDatas.servicerMobile"><i class="icon iconfont icon-phone1"></i></a></em>
+            <!--<em class="f_r"><a href="tel:{{shopinfo.servicerMobile}}" (click)="callshop()"><i class="icon iconfont icon-phone1"></i></a></em>-->
+        </h6>
+        <p class="cf ">
+            <b class="f14 f_l ">{{listDatas.name}}</b>
+        </p>
+        <p class="pt10 cf">
+            <span class="f_l">地址：{{listDatas.address}}</span>
+            <!-- <span class="g9 f_r mt5px"><i class="icon iconfont icon-dingwei1"></i>{{shopinfo.distanceToMe/100000 || '1'}}km</span> -->
+        </p>
+    </div>
+    <p class="bb6 "></p>
+    <!--商品内容-->
+    <div class="pro-con">
+        <h5 class="h_style"><i class="icon iconfont icon-title_line"></i>商品内容</h5>
+        <div class="pro-con-li">
+            <p class="g6">·行程特色</p>
+            <p class="cf pt8px f14">{{itemList || '暂无信息'}}</p>
+        </div>
+    </div>
+    <p class="bb6 "></p>
+
+    <p class="bb6 "></p>
+    <!---->
+</ion-content>

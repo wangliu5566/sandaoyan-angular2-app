@@ -1,0 +1,26 @@
+<!--
+  Generated template for the YuyueGuahaoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header [hidden]="true">
+
+  <ion-navbar>
+    <ion-title>预约挂号</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background:#eeeeee">
+  <div style="width:100%;height:50px;background:white;margin-top:10px;position:relative;">
+      <input type="text" class="serchINT" id="serInp"  (click)="inpClick()" value="{{serchtext}}" (change)="serchName($event)">
+      <span class="serchICON" *ngIf="showSerch"></span>
+  </div>
+  <ul style="padding:0 10px;background:white;margin:15px auto ;width:90%;">
+    <li *ngFor="let item of list" class="{{item.isChoosed?'choosed':''}}" (click)="goDocList(item.id)">
+         {{item.name}}
+    </li>
+  </ul>
+</ion-content>

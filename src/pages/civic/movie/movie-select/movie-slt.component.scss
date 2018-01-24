@@ -1,0 +1,95 @@
+movie-slt {
+    .iconfont {
+        font-size: 24px;
+    }
+    .moviestl_con {
+        background-color: #ddd;
+        .moviestl_head {
+            width: 80%;
+            height: 14px;
+            margin: 0 auto;
+            background-color: #999999;
+            color: #fff;
+        }
+    }
+    //选座位
+    .small-seats {
+        padding: 20px 0;
+        position: relative;
+        min-height: 140px;
+        overflow: hidden
+    }
+    .small-seats ion-scroll {
+        height: 240px;
+    }
+    .small-seats .seats-inner {
+        // width: 500px;
+        z-index: 10;
+        overflow: hidden;
+    }
+    .small-seats .seat-table {
+        padding: 10px 30px 0 20px;
+    }
+    .small-seats .seat-row {
+        height: 24px;
+        display: block;
+        clear: both;
+    }
+    .small-seats .not-seat,
+    .small-seats .seat {
+        float: left;
+        padding: 1px 2px 2px 1px;
+        z-index: 10;
+        position: relative;
+    }
+    .small-seats .not-seat .iconfont {
+        visibility: hidden;
+    }
+    .small-seats .iconfont {
+        color: #eee;
+    }
+    .small-seats .sell-seat .iconfont {
+        color: #3ac72b;
+    }
+    .small-seats .sell-ed .iconfont {
+        color: #e5241d;
+        pointer-events: none;
+    }
+    //下面是条子
+    .small-seats .seat-number {
+        width: 20px;
+        position: absolute;
+        z-index: 20;
+        padding-left: .625rem;
+        padding-top: 0
+    }
+    .small-seats .seat-number .seat-no-ul {
+        padding: 12px 0;
+        background-color: rgba(0, 0, 0, .33);
+        width: 11px;
+        border-radius: 6px
+    }
+    .small-seats .seat-number li {
+        height: 24px;
+        line-height: 20px;
+        width: 13px;
+        font-size: 12px;
+        text-align: center;
+        border-radius: 5px;
+        color: #fff;
+        -webkit-transform: scale(.8, .8) translate(-1px)
+    }
+    .small-seats .seat-number .has-number {
+        background: rgba(255, 158, 53, .5)
+    }
+    /*选中*/
+    .seats_stled {
+        span {
+            float: left;
+            margin-right: 20px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}

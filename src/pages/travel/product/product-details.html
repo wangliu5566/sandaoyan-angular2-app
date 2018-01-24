@@ -1,0 +1,215 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{prod_data.title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content overflow-scroll="true" (ionScroll)="scrollHandler($event)">
+    <!--图片切换-->
+    <!--*ngIf="prod_data.localItemPictures.length > 1"-->
+    <div class="rel">
+        <p class="slide-title">已售：{{prod_data.buyNum}} 份</p>
+        <ion-slides pager autoplay="5000" loop='true' class="shop-detail-slides" *ngIf="prod_data.localItemPictures?.length >= 1">
+            <ion-slide *ngFor="let propics of prod_data.localItemPictures">
+                <img [src]="propics.dimgUrl" alt=" ">
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <!--商品信息-->
+    <div padding class="pro-msg cf" id="promsgId">
+        <h6 class="cf"><span class="f_l">{{prod_data.title}}</span><em class="red f16 f_r">￥{{prod_data.salePrice/100.00 ||0}}</em></h6>
+        <p class="g6 cf">
+            <span class="f14 f_l">{{prod_data.subTitle}}</span>
+            <del class="f14 f_r">￥{{prod_data.marketPrice/100.00 || 0}}</del>
+        </p>
+        <p class="merit pt20">
+            <span *ngIf="prod_data.nowReturn==1"><i class="icon iconfont icon-xuanzhong"></i>随时退</span>
+            <span *ngIf="prod_data.outdateReturn==1"><i class="icon iconfont icon-xuanzhong"></i>过期退</span>
+            <span *ngIf="prod_data.unReservation==1"><i class="icon iconfont icon-xuanzhong"></i>免预约</span>
+            <span *ngIf="prod_data.canAppend==1"><i class="icon iconfont icon-xuanzhong"></i>可叠加</span>
+        </p>
+    </div>
+    <p class="bb6"></p>
+    <!---->
+    <div class="block-two">
+        <!--商品内容-->
+        <div class="pro-con">
+            <h5 class="h_style mb0"><i class="icon iconfont icon-title_line"></i>商品内容</h5>
+            <div class="pro-con-li pb15px pl15px pr15px">
+                <dl class="pt10 f14">
+                    <!--<dt class="g6">•主食</dt>-->
+                    <dd class="cf f14 g3 pt8px" *ngFor="let prodeclist of prod_data.localItemDetails"><span class="f_l pct70">{{prodeclist.title}}&nbsp;&nbsp;&nbsp;&nbsp;</span> <em class="f_r">{{"￥"+prodeclist.price/100.00 ||" "}}</em></dd>
+                </dl>
+            </div>
+        </div>
+        <p class="bb6"></p>
+        <!--更多图文信息-->
+        <div padding class="more-info cf" (click)="more(prod_data.id)" [attr.id]="prod_data.id">
+            <a href=""><span class="f_l f15">更多图文详情</span><i class="icon iconfont icon-arrowup f_r f18 fa-rotate-180"></i></a>
+        </div>
+        <p class="bb6"></p>
+        <!--购买须知-->
+        <div class="buy_notes cf">
+            <h5 class="h_style mb0"><i class="icon iconfont icon-title_line"></i>购买须知</h5>
+            <div class="pro-con-li pb15px pl15px pr15px">
+                <p class="g6 f14 pt15">•有效期</p>
+                <p class="pt8px">{{prod_data.validityStartDate | date:'yyyy-MM-dd'}} 至 {{prod_data.validityEndDate | date:'yyyy-MM-dd'}} <em *ngIf="!isCurrency">（周末、法定节假日通用）</em></p>
+                <p class="g6 f14 pt15">•使用规则</p>
+                <p class="pt8px">{{prod_data.useRules}}</p>
+                <p class="g6 f14 pt15">•规则说明</p>
+                <p class="pt8px">{{prod_data.rulesRemark}}</p>
+            </div>
+        </div>
+        <p class="bb6"></p>
+        <!--店铺信息-->
+        <div padding class="shop-msg">
+            <h6>{{shopmsg.name}}
+                <button ion-button color="dark" clear end (click)="callshop(shopmsg.servicerMobile)">
+                    <!--<a href="tel:{{shopmsg.servicerMobile}}" (click)="callshop(shopmsg.servicerMobile)"><i class="icon iconfont icon-phone1"></i></a>-->
+                    <i class="icon iconfont icon-phone1"></i>
+                </button>
+            </h6>
+            <p class="star-level">
+                <span class="star" *ngIf='shopmsg.level==1'>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                </span>
+                <span class="star" *ngIf='shopmsg.level==2'>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                </span>
+                <span class="star" *ngIf='shopmsg.level==3'>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                </span>
+                <span class="star" *ngIf='shopmsg.level==4'>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-default"></i>
+                </span>
+                <span class="star" *ngIf='shopmsg.level==5'>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                </span>
+
+                <span class="per-capita">人均 ￥{{shopmsg.perCapita/100.00 || 0}}</span>
+
+            </p>
+            <p (click)='GogoMap()'><i class="icon iconfont icon-dingwei1"></i>{{shopmsg.address}}</p>
+        </div>
+        <!--商品-->
+        <div class="commodity">
+            <h4 class="h_style"><i class="icon iconfont icon-title_line"></i>商品</h4>
+            <ion-list>
+                <ion-item *ngFor="let recoProlist of prod_data.localItem | slice:0:3" (click)="gotoprodetail(recoProlist.id)" [attr.id]="recoProlist.id">
+                    <ion-thumbnail item-start *ngFor="let imgArr of recoProlist.localItemPictures | slice:0:1">
+                        <img [src]="imgArr.dimgUrl" alt="">
+                    </ion-thumbnail>
+                    <h2>{{recoProlist.title}}</h2>
+
+                    <p><em class="red f16">￥{{recoProlist.salePrice/100.00 || 0}}</em><i class="icon iconfont icon-gouwuche f_r fb g3 f18"></i></p>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div>
+          <h4 class="h_style"><i class="icon iconfont icon-title_line"></i>网友点评 &nbsp;({{toltalpage.totalPage||0}})</h4>
+          <ul >
+            <li *ngFor="let item of toltalpage.datas" class="userLi" style="display:block;clear:both;border-bottom:1px solid #eeeeee;margin:10px 0 0 10px">
+              <div style="width: 100%;height: 3rem;">
+                  <img [src]="item.customer.photo||'http://tse4.mm.bing.net/th?id=OIP.JVPhjQ16xKLbbA_LoSI7uQEsEs&w=161&h=160&c=7&qlt=90&o=4&pid=1.7'" alt="" style="border-radius: 20px;width: 40px;height:40px;float:left;display:block">
+
+                  <div style="height: 100%;width:auto;position:relative;left:10px">
+                        <p style="height:49%">
+                           {{item.nickName}}
+                        </p>
+                        <div>
+                            <p class="star-level">
+                                <span class="star" *ngIf='item.star==1'>
+
+                                  <i class="star-yellow star-default"></i>
+                                  <i class="star-default"></i>
+                                  <i class="star-default"></i>
+                                  <i class="star-default"></i>
+                                  <i class="star-default"></i>
+                                </span>
+                                <span class="star" *ngIf='item.star==2'>
+                                  <i class="star-yellow star-default"></i>
+                                  <i class="star-yellow star-default"></i>
+                                  <i class="star-default"></i>
+                                  <i class="star-default"></i>
+                                  <i class="star-default"></i>
+                                </span>
+                                <span class="star" *ngIf='item.star==3'>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-default"></i>
+                                    <i class="star-default"></i>
+                                </span>
+                                <span class="star" *ngIf='item.star==4'>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-default"></i>
+                                </span>
+                                <span class="star" *ngIf='item.star==5'>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                      </div>
+                    <div style="width:88%;margin-left:50px;clear:both;text-overflow:ellipsis;margin-top:20px" readonly="readonly">
+                        <span>{{item.content.length>100&&item.isShowTxt?item.content.substring(0,96):item.content}}</span>
+                        <span *ngIf="item.content.length>100" style="color:#1A83E5" (click)="showAllTxt($event,item)">全文</span>
+                    </div>
+                    <ul style="margin:10px 0 10px 50px;display:inline-block;border-bottom:1px solid #eeeeee">
+                        <li *ngFor="let img of item.pictures" style="display:inline-block;margin-right:15px;width:90px;height:90px;margin-bottom:10px">
+                            <img [src]="img.dimgUrl" alt="" style="width:100%;height:100%" (click)="getWinodowSize(item.pictures,img.dimgUrl)">
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+
+                    <div class="pingj" *ngIf="toltalpage.datas" style="clear:both;text-align:center;height:40px;position:relative;top:15px;padding:5px 0"
+                        (click)="jumpUserP()">
+                        更多用户评价（{{toltalpage.totalPage||0}}）
+                    </div>
+                    <div *ngIf="!toltalpage.datas" style="text-align:center">
+                        暂无评价
+                    </div>
+
+        </div>
+
+    </div>
+    <!---->
+</ion-content>
+<ion-footer>
+    <ion-toolbar class="tab_footer">
+        <span class="f_l t_r red pct60 dib pt10px pr10">惠享价：<em class="f18">{{"￥"+prod_data.salePrice/100.00 ||" "}}</em></span>
+        <button ion-button fab-right color="danger" class="f_r pct40" (click)="buy()">立即购买</button>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,88 @@
+<!--
+  Generated template for the HotelOrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header [hidden]="true">
+
+  <ion-navbar>
+    <ion-title>{{order_data.hotelName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content overflow-scroll="true">
+      <!--订单信息-->
+      <div class="orders-detail-info"  (click)="goRm()" style="margin-top:10px">
+        <ion-list>
+          <ion-item style="position:relative;">
+            <ion-thumbnail item-start style="margin: 0 16px 0 0">
+              <img [src]="order_data.img" style="width:80px;height:80px">
+            </ion-thumbnail>
+            <h2 class="cf">
+              <span class="f_l" style="position:absolute;top:0;left:96px">{{order_data.hotelName}}({{order_data.roomTempName}})</span>
+              <span style="float:right;position:relative;top:2px" *ngIf="order_data.status=='waitingPay'">待付款</span>
+              <span style="float:right;position:relative;top:2px" *ngIf="order_data.status=='canUse'">待使用</span>
+              <span style="float:right;position:relative;top:2px" *ngIf="order_data.status=='refunding'">退款中</span>
+              <span style="float:right;position:relative;top:2px" *ngIf="order_data.status=='refundFail'">退款失败</span>
+              <span style="float:right;position:relative;top:2px" *ngIf="order_data.status=='refund'">已退款</span>
+              <span style="float:right;position:relative;top:2px" *ngIf="order_data.status=='finished'">完成</span>
+
+               <!-- waitingPay待付款 canUse 可使用 refunding 退款中 refundFail 退款失败 refund已退款 finished完成 -->
+            </h2>
+            <p style="position:absolute;top:22px;left:96px;color:#666666">
+               房间数量：{{order_data.usedRoomCount}}
+            </p>
+            <!-- <p class="f16 g9">券码数量：{{order_data.number || '1'}}</p> -->
+            <p class="order-price" style="position:absolute;bottom:0;left:96px">
+                    <span class="f16">￥{{order_data.actualAmount/100.00 | number:'1.1-2'}}  &nbsp; &nbsp; &nbsp;</span>
+            </p>
+          </ion-item>
+        </ion-list>
+      </div>
+      <!--预定信息-->
+      <p class="bb6"></p>
+
+      <div *ngIf="order_data.status!='waitingPay'">
+        <!--*ngIf="order_data.status!='waitingPay'"-->
+        <div padding class="coupons-code cf">
+          <h6 class="h_style cf" style="">
+            <span class="f_l"><i class="icon iconfont icon-title_line"></i>预订信息</span><br>
+            <p class="ruzhuxinxi">入住人 <span>{{order_data.userName}}</span></p>
+            <p class="ruzhuxinxi">联系手机  <span>{{order_data.phone}}</span></p>
+            <p class="ruzhuxinxi">入住时间  <span id="inTime">{{order_data.checkInTime|date:'yyyy-MM-dd'}}</span></p>
+            <p class="ruzhuxinxi">离店时间  <span id="outTime">{{order_data.checkOutTime|date:'yyyy-MM-dd'}}</span></p>
+            <p class="ruzhuxinxi">入住说明 <span>{{length>30?rule.substring(0,30)+'...':rule}}</span></p>
+
+
+          </h6>
+        </div>
+        <p class="bb6"></p>
+      </div>
+      <div padding class="business-msg cf" >
+        <h6 class="h_style cf">
+          <span class="f_l"><i class="icon iconfont icon-title_line"></i>商家信息</span>
+          <em class="f_r"><span  (click)="callshop(smallData.servicerMobile)"><i class="icon iconfont icon-phone1"></i></span></em>
+          <!-- <em class="f_r"><a href="tel:{{smallData.servicerMobile}}" (click)="callshop()"><i class="icon iconfont icon-phone1"></i></a></em> -->
+        </h6>
+        <p class="cf " (click)="goHt()">
+          <b class="f14 f_l ">{{smallData.name}}</b>
+        </p>
+        <p class="pt10 cf" (click)="goHt()">
+          <span class="f_l">地址：{{smallData.address}}</span>
+          <span class="g9 f_r mt5px"><i class="icon iconfont icon-dingwei1"></i>{{smallData.distanceToMe/100000 || '1'}}km</span>
+        </p>
+      </div>
+      <!-- <div class="pro-con">
+        <h5 class="h_style"><i class="icon iconfont icon-title_line"></i>商品内容</h5>
+        <div class="pro-con-li">
+          <p class="g6">·行程特色</p>
+          <p class="cf pt8px f14">{{itemList || '暂无信息'}}</p>
+        </div>
+      </div>
+      <p class="bb6 "></p> -->
+
+      <p class="bb6 "></p>
+</ion-content>

@@ -1,0 +1,200 @@
+<!--
+  Generated template for the HotelDeatilsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header [hidden]="true">
+
+  <ion-navbar>
+    <ion-title>房型详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content  overflow-scroll="true" (ionScroll)="scrollHandler($event)">
+  <div class="rel">
+      <p class="slide-title">已售：{{shengyu.bookOrUsingOrLockCount||0}} 份</p>
+      <ion-slides pager autoplay="5000" loop='true' class="shop-detail-slides" *ngIf="prod_data.picturesList?.length >= 1">
+          <ion-slide *ngFor="let propics of prod_data.picturesList">
+              <img [src]="propics.dimgUrl" alt=" ">
+          </ion-slide>
+      </ion-slides>
+  </div>
+  <!--房间信息-->
+  <div padding class="pro-msg cf" id="promsgId">
+      <h6 class="cf"><span class="f_l">{{prod_data.templateName}}</span><em class="red f16 f_r">￥{{prod_data.price/100.00 | number:'1.1-2'}}</em></h6>
+      <p class="g6 cf">
+          <span [innerHTML] ="prod_data.introduction" class="roomdetail"></span>
+      </p>
+  </div>
+  <!-- 基础设施服务 -->
+  <div style="width: 100%;position:relative;padding:15px">
+    <h6 style="position:absolute;top:0;right:15px">已售：{{shengyu.bookOrUsingOrLockCount||0}}</h6>
+      <ul>
+        <li *ngFor="let item of prod_data.facilityList " style="position:relative;">
+          <i class="icon iconfont icon-xuanzhong"></i>
+          <span style="color:gray">{{item.name}}</span>  &nbsp; &nbsp; &nbsp;
+          <span style="position:absolute;left:30%">{{item.introduction}}</span>
+        </li>
+      </ul>
+  </div>
+  <div class="buy_notes cf">
+      <h5 class="h_style mb0"><i class="icon iconfont icon-title_line"></i>购买须知</h5>
+      <div class="pro-con-li pb15px pl15px pr15px">
+          <p class="g6 f14 pt15">退房时间</p>
+          <p class="pt8px">次日12:00</p>
+          <p class="g6 f14 pt15">使用规则</p>
+          <p class="pt8px">直接消费，请持入住人身份证、姓名和预定手机号直接办理入住 <br><br>
+            网上预订房间 无法线下续房 <br><br>
+            入住需要押金，金额以前台为准
+          </p>
+
+      </div>
+  </div>
+
+  <p class="bb6"></p>
+  <div padding class="shop-msg">
+      <h6>{{easyHotel.name}}
+          <button ion-button color="dark" clear end (click)="callshop(easyHotel.servicerMobile)">
+              <i class="icon iconfont icon-phone1"></i>
+          </button>
+      </h6>
+      <p class="star-level">
+        <span class="star" *ngIf='easyHotel.level>=1&&easyHotel.level<2'>
+                <i class="star-yellow star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+            </span>
+        <span class="star" *ngIf='easyHotel.level>=2&&easyHotel.level<3'>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+            </span>
+        <span class="star" *ngIf='easyHotel.level>=3&&easyHotel.level<4'>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+            </span>
+        <span class="star" *ngIf='easyHotel.level>=4&&easyHotel.level<5'>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-default"></i>
+            </span>
+        <span class="star" *ngIf='easyHotel.level>=5'>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+        </span>
+        <span class="per-capita">最低价 ￥{{easyHotel.miniPrice/100.00 | number:'1.1-2'}}</span>
+      </p>
+      <p (click)='GogoMap()'><i class="icon iconfont icon-dingwei1"></i>{{easyHotel.address}}</p>
+  </div>
+  <!-- 其他房型 -->
+  <div class="commodity">
+      <h4 class="h_style"><i class="icon iconfont icon-title_line"></i>房型</h4>
+      <ion-list>
+          <ion-item *ngFor="let recoProlist of roomList.datas | slice:0:3"  (click)="jumpOtherRoom(recoProlist)">
+              <ion-thumbnail item-star style="position:relative;">
+                  <img [src]="recoProlist.picturesList[0].dimgUrl" alt="" style="display:inline-block;vertical-align:top;width:80px;height:80px">
+                  <h2 style="display:inline-block">{{recoProlist.templateName}}</h2>
+                  <em class="red f16" style="position:absolute;bottom:0;left:80px">￥{{recoProlist.price/100.00 | number:'1.1-2'}}</em>
+                  <i class="icon iconfont icon-gouwuche f_r fb g3 f18" style="position:absolute;bottom:0;right:0"></i>
+              </ion-thumbnail>
+          </ion-item>
+      </ion-list>
+      <div *ngIf="!roomList.datas" style="text-align:center;height:40px;line-height:40px">
+        暂无房型
+      </div>
+  </div>
+  <!-- 网友点评 -->
+  <div>
+    <h4 class="h_style"><i class="icon iconfont icon-title_line"></i>网友点评（{{userAppraise.totalPage||0}}）</h4>
+    <ul >
+      <li *ngFor="let item of userAppraise.datas" style="display:block;clear:both">
+        <div style="width: 100%;height: 3rem;">
+            <img [src]="item.customer.photo||'http://tse4.mm.bing.net/th?id=OIP.JVPhjQ16xKLbbA_LoSI7uQEsEs&w=161&h=160&c=7&qlt=90&o=4&pid=1.7'" alt="" style="border-radius: 20px;width: 40px;height:40px;float:left;display:block">
+
+            <div style="height: 100%;width:auto;position:relatvie;left:10px">
+                  <p style="height:49%">
+                     {{item.nickName}}
+                  </p>
+                  <div>
+                      <p class="star-level">
+                          <span class="star" *ngIf='item.star==1'>
+                            <i class="star-yellow star-default"></i>
+                            <i class="star-default"></i>
+                            <i class="star-default"></i>
+                            <i class="star-default"></i>
+                            <i class="star-default"></i>
+                          </span>
+                          <span class="star" *ngIf='item.star==2'>
+                            <i class="star-yellow star-default"></i>
+                            <i class="star-yellow star-default"></i>
+                            <i class="star-default"></i>
+                            <i class="star-default"></i>
+                            <i class="star-default"></i>
+                          </span>
+                          <span class="star" *ngIf='item.star==3'>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-default"></i>
+                              <i class="star-default"></i>
+                          </span>
+                          <span class="star" *ngIf='item.star==4'>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-default"></i>
+                          </span>
+                          <span class="star" *ngIf='item.star==5'>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-yellow star-default"></i>
+                              <i class="star-yellow star-default"></i>
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                </div>
+                    <div style="width:88%;margin-left:50px;clear:both;text-overflow:ellipsis;margin-top:20px" readonly="readonly">
+                        <span>{{item.content.length>100&&item.isShowTxt?item.content.substring(0,99):item.content}}</span>
+                        <span *ngIf="item.content.length>100" style="color:#1A83E5" (click)="showAllTxt($event,item)">全文</span>
+                    </div>
+                    <ul style="margin:10px 0 10px 50px;display:inline-block">
+                        <li *ngFor="let img of item.pictures" style="display:inline-block;margin-right:15px;width:90px;height:90px;margin-bottom:10px">
+                            <img [src]="img.dimgUrl" alt="" style="width:100%;height:100%" (click)="getWinodowSize(item.pictures,img.dimgUrl)">
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+
+                    <div class="pingj" *ngIf="userAppraise.datas" style="clear:both;text-align:center;height:40px;position:relative;top:15px;padding:5px 0"
+                        (click)="jumpUserP()">
+                        更多用户评价（{{userAppraise.totalPage||0}}）
+                    </div>
+                    <div *ngIf="!userAppraise.datas" style="text-align:center;height:40px;line-height:40px;border-top:#eeeeee 1px solid;border-bottom:#eeeeee 1px solid">
+                        暂无评价
+                    </div>
+  </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar class="tab_footer">
+        <span class="f_l t_r red pct60 dib pt10px pr10">惠享价：<em class="f18">￥{{prod_data.price/100.00 | number:'1.1-2'}}</em></span>
+        <button ion-button fab-right color="danger" class="f_r pct40" (click)="buy()">立即预定</button>
+    </ion-toolbar>
+</ion-footer>

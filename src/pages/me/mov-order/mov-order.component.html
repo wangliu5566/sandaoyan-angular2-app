@@ -1,0 +1,70 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>订单详情</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    订单信息
+    <div class="p10 cf bbe">
+        <div class="f_r"><img [src]="orderTfilm.poster || DEFAULT_picmd" width="75" alt=""></div>
+        <h5 class="mt0">{{orderTfilm.filmName}}</h5>
+        <div class="red f16">{{orderTscreen.sessionDate | date:'MM-dd'}} {{orderTscreen.startTime}} {{orderTscreen.screenType | filmtype}} {{orderTscreen.screenName}}</div>
+        <div class="g9 mt5">{{orderTticketOrder.seats}}</div>
+        <div class="g9 mt5">观影地址：{{orderTscreen.cinema?.address || '暂无'}}</div>
+    </div>
+
+    <div class="moviepay_dirver"></div>
+    <!--取票码-->
+    <div class="pt5">
+        <div class="titlebox3"><span class="sign01"><i class="icon iconfont icon-tuoyuanh"></i></span>取票码</div>
+        <ion-list>
+            <ion-item (click)="doConfirm()">
+                券码：{{orderTticketOrder.ticketCode || '暂无'}}
+                <span item-end><img src="assets/images/erweima_s1.jpg" width="23" alt=""></span>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div class="moviepay_dirver"></div>
+    <!--实付金额-->
+    <div class="pt5">
+        <div class="titlebox3 cf"><span class="f_r red">￥{{orderTticketOrder.totalAmount || '0.00'}}</span><span class="sign01"><i class="icon iconfont icon-tuoyuanh"></i></span>实付金额</div>
+        <ion-list>
+            <ion-item>
+                订单号
+                <span class="g9" item-end>{{orderTticketOrder.orderNo || '暂无'}}</span>
+            </ion-item>
+            <ion-item>
+                购买时间
+                <span class="g9" item-end>{{orderTticketOrder.payTime | date:'yyyy-MM-dd'}}</span>
+            </ion-item>
+            <ion-item>
+                下单手机号
+                <span class="g9" item-end>{{userInfo.cellphone}}</span>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div class="moviepay_dirver"></div>
+    <!--取票须知-->
+    <div class="pt5">
+        <div class="titlebox3"><span class="sign01"><i class="icon iconfont icon-tuoyuanh"></i></span>取票须知</div>
+        <div class="pl10 pb10 pr10">
+            1.请提前到达影院现场，找到自助取票机，打印纸质电影票，完成取票。<br> 2.如现场自助取票机无法打印电影票，请联系影院工作人员处理。
+            <br> 3.凭打印好的纸质电影票，检票入场观影。
+            <br>
+        </div>
+    </div>
+    <div class="moviepay_dirver"></div>
+
+
+
+    <!---->
+    <!--    <div class="tab_footer fix">
+        <span class="f_l t_r red pct60 dib pt10px pr10">惠享价：<em class="f18">￥28.00</em></span>
+        <button ion-button fab-right color="danger" class="f_r pct40" (click)="buy()">立即支付</button>
+    </div>-->
+</ion-content>

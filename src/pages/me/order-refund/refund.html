@@ -1,0 +1,50 @@
+<!--
+  Generated template for the RefundPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>申请退款</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content overflow-scroll="true">
+    <ion-item-group>
+        <ion-item-divider color="lightgray">订单号码</ion-item-divider>
+        <ion-item><span class="coupon-code-num">{{orderObj.orderNo}}</span><span></span></ion-item>
+        <ion-item-divider color="lightgray">退还金额</ion-item-divider>
+        <ion-item><span class="coupon-code-num">金额</span><span>￥{{orderObj.actualAmount/100.00 | number:'1.1-2'}}</span></ion-item>
+        <ion-item-divider color="lightgray">退还方式</ion-item-divider>
+        <ion-item><span class="coupon-code-num">原路退回</span><span class="red">1-7个工作日退款支付账号</span></ion-item>
+        <ion-item-divider color="lightgray">退款原因</ion-item-divider>
+        <ion-item>
+            <ion-label>联系不到商家</ion-label>
+            <ion-checkbox color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>不想要了</ion-label>
+            <ion-checkbox color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>买错了/买多了</ion-label>
+            <ion-checkbox color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>商家营业但不接待</ion-label>
+            <ion-checkbox color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>店里活动更优惠</ion-label>
+            <ion-checkbox color="dark"></ion-checkbox>
+        </ion-item>
+    </ion-item-group>
+    <div padding>
+        <button ion-button full (click)="refundbtn()" color="danger">申请退款</button>
+    </div>
+
+</ion-content>

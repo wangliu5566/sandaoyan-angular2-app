@@ -1,0 +1,42 @@
+{
+    "code": 200,
+    "msg": "提交成功!",
+    "data": {
+        "id": 10,
+        "createDate": 1497772753000,
+        "orderNo": "201706181559125576717",
+        "itemId": 1,
+        "shopId": 3,
+        "itemName": "霸",
+        "orderImage": "/aaa/d.jpg",
+        "number": 2,
+        "usedNumber": 0,
+        "actualAmount": 5690,
+        "status": "waitingPay",
+        "mobile": "110",
+        "localOrderItemList": [{
+            "id": 18,
+            "itemName": "霸",
+            "itemImg": "/aaa/d.jpg",
+            "salePrice": 3000,
+            "marketPrice": 31,
+            "useQrCode": 60000,
+            "useCode": "32CBE70BF445",
+            "status": "canUse",
+            "key": 18
+        }],
+        "shop": {
+            "id": 3,
+            "name": "霸王虾",
+            "longitude": "30.5773437369",
+            "latitude": "103.9553954010",
+            "distanceToMe": 11061000,
+            "key": 3
+        },
+        "item": {
+            "detail": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "key": 10
+    },
+    "status": 200
+}

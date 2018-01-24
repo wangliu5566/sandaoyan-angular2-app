@@ -1,0 +1,11 @@
+page-yuyue-guahao {
+    .serchINT{width:55%;height: 100%;border: none;color: black;float: right;text-align: left}
+    .serchICON{
+        float: right;background-image: url('../assets/icon/sousuo.png');background-size:100% 100%;width: 30px;height: 30px;margin-top:10px
+    }
+    li{
+        height: 44px;font-size: 14px;color: #162232;text-align: center;
+        width: 100%;margin:0 auto;border-bottom: 1px solid #eeeeee;line-height: 40px
+    }
+    .choosed{color:white;background: #162232;}
+}

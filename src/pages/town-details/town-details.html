@@ -1,0 +1,16 @@
+<!--<ion-header>-->
+    <!--<ion-navbar>-->
+        <!--<button ion-button menuToggle>-->
+      <!--<ion-icon name="arrow-back" class="back-icon"></ion-icon>-->
+    <!--</button>-->
+        <!--<ion-title>详情</ion-title>-->
+    <!--</ion-navbar>-->
+<!--</ion-header>-->
+
+<ion-content>
+    <div style="padding:10px 1em">
+        <img src='{{details.imgUrl}}' alt="" class="title-img" />
+    </div>
+    <p class="name">{{details.name}}</p>
+    <div class="text" [innerHTML]="details.introduceDetail"></div>
+</ion-content>

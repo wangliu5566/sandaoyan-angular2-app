@@ -1,0 +1,47 @@
+ {
+     "code": 200,
+     "msg": "提交成功!",
+     "data": {
+         "totalPage": 1,
+         "pageSize": 20,
+         "pageNumber": 1,
+         "datas": [{
+             "name": "北京市",
+             "center": "116.405285,39.904989",
+             "lnglats": "116.405285,39.904989",
+             "type": 0,
+             "subDistricts": "运用UI组件库实现Marker"
+         }, {
+             "name": "天津市",
+             "center": "117.190182,39.125596",
+             "lnglats": "117.190182,39.125596",
+             "type": 1,
+             "subDistricts": "运用UI组件库实现Marker"
+         }, {
+             "name": "河北省",
+             "center": "114.502461,38.045474",
+             "lnglats": "114.502461,38.045474",
+             "type": 1,
+             "subDistricts": "运用UI组件库实现Marker"
+         }, {
+             "name": "山西省",
+             "center": "112.549248,37.857014",
+             "lnglats": "112.549248,37.857014",
+             "type": 1,
+             "subDistricts": "运用UI组件库实现Marker"
+         }, {
+             "name": "内蒙古自治区",
+             "center": "111.670801,40.818311",
+             "lnglats": "111.670801,40.818311",
+             "type": 1,
+             "subDistricts": "运用UI组件库实现Marker"
+         }, {
+             "name": "辽宁省",
+             "center": "123.429096,41.796767",
+             "lnglats": "123.429096,41.796767",
+             "type": 1,
+             "subDistricts": "运用UI组件库实现Marker"
+         }]
+     },
+     "status": 200
+ }

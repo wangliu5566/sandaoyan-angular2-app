@@ -1,0 +1,256 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{shop_data.name}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content overflow-scroll="true" (ionScroll)="scrollHandler($event)">
+    <!--图片切换-->
+    <div class="rel">
+        <ion-slides pager autoplay="5000" loop='true' class="shop-detail-slides" *ngIf="shop_data.shopPictures?.length >= 1">
+            <ion-slide *ngFor="let propics of shop_data.shopPictures">
+                <img [src]="propics.dimgUrl" alt=" ">
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <!--店铺信息-->
+    <div padding class="shop-msg">
+        <h6>{{shop_data.name}}
+            <button ion-button color="dark" clear end (click)="callshop(shop_data.servicerMobile)">
+                <!--<a href="tel:{{shop_data.servicerMobile}}" (click)="callshop(shop_data.servicerMobile)"><i class="icon iconfont icon-phone1"></i></a>-->
+                <i class="icon iconfont icon-phone1"></i>
+            </button>
+        </h6>
+        <p class="star-level">
+            <!--<span class="star" *ngFor='let item of shop_data.level, let i =index'>1</span>-->
+            <span class="star" *ngIf='shop_data.level>=1&&shop_data.level<2'>
+                <i class="star-yellow star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+            </span>
+            <span class="star" *ngIf='shop_data.level>=2&&shop_data.level<3'>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+            </span>
+            <span class="star" *ngIf='shop_data.level>=3&&shop_data.level<4'>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-default"></i>
+                <i class="star-default"></i>
+            </span>
+            <span class="star" *ngIf='shop_data.level>=4&&shop_data.level<5'>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-default"></i>
+            </span>
+            <span class="star" *ngIf='shop_data.level>=5'>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+                <i class="star-yellow star-default"></i>
+            </span>
+            <span class="per-capita">人均 ￥{{shop_data.perCapita/100.00 | number:'1.1-2'}}</span>
+        </p>
+        <p (click)='GogoMap()'><i class="icon iconfont icon-dingwei1"></i>{{shop_data.address}}</p>
+    </div>
+    <!--优惠信息-->
+    <div class="block-two">
+        <div padding-left padding-right class="toStitlebox bbe fixed" id="offertitlet">
+            <ion-segment [(ngModel)]="sop" (ionChange)="segmentChanged(sop)">
+                <ion-segment-button value="specialoffers">优惠信息</ion-segment-button>
+                <ion-segment-button value="recommend">网友点评</ion-segment-button>
+                <ion-segment-button value="businessInfo">商家信息</ion-segment-button>
+            </ion-segment>
+        </div>
+        <div padding-left padding-right class="toStitlebox bbe" id="offertitleo">
+            <ion-segment [(ngModel)]="sop" (ionChange)="segmentChanged(sop)">
+                <ion-segment-button value="specialoffers">优惠信息</ion-segment-button>
+                <ion-segment-button value="recommend">网友点评</ion-segment-button>
+                <ion-segment-button value="businessInfo">商家信息</ion-segment-button>
+            </ion-segment>
+        </div>
+        <!--<div class="toStitlebox bbe" id="offertitle">
+            <ion-grid #params [(ngModel)]="pet" (ionChange)="segmentChanged(pet)">
+                <ion-row>
+                    <ion-col col-4 class="t_c f16">
+                        <a [ngClass]="{red: isSpecial==1}" value="specialoffers">优惠信息</a></ion-col>
+                    <ion-col col-4 class=" t_c f16">
+                        <a [ngClass]="{red: isSpecial==2}" value="recommend">本店推荐</a>
+                    </ion-col>
+                    <ion-col col-4 class="t_c f16">
+                        <a [ngClass]="{red: isSpecial==3}" value="businessInfo">商家信息</a>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>-->
+
+        <!--买单-->
+        <div style="height:0" id="specialoffers"></div>
+        <div class="pay_bill" *ngIf="shopsettings.isPreferentialPay==true">
+            <!--*ngIf="shopsettings.isPreferentialPay==true"-->
+            <ion-list>
+                <ion-item>
+                    <ion-thumbnail item-end>
+                        <button ion-button color="danger" (click)="getShopName()">买单</button>
+                    </ion-thumbnail>
+                    <h4><i class="icon iconfont icon-title_line"></i>买单</h4>
+                    <p class="g3 pt5px">
+                        <em class="red">{{shopsettings.preferentialPay/10}}折优惠</em> (周一至周五{{shopsettings.preferentialPayStart | date:'HH:mm'}}~{{shopsettings.preferentialPayEnd | date:'HH:mm'}})
+                    </p>
+                </ion-item>
+            </ion-list>
+        </div>
+        <!--商品-->
+        <div class="commodity">
+            <h4 class="h_style"><i class="icon iconfont icon-title_line"></i>商品</h4>
+            <ion-list>
+                <!-- | slice:0:3  -->
+                <ion-item *ngFor="let prolist of shop_data.localItem" (click)="gotoprodetail(prolist.id,prolist.type)" [attr.id]="prolist.id">
+                    <ion-thumbnail item-start *ngFor="let imgArr of prolist.localItemPictures | slice:0:1">
+                        <img [src]="imgArr.dimgUrl">
+                    </ion-thumbnail>
+                    <h2>{{prolist.title}}</h2>
+                    <p><em class="red f16">￥{{prolist.salePrice/100.00 | number:'1.1-2'}}</em><i class="icon iconfont icon-gouwuche f_r fb g3 f18"></i></p>
+                </ion-item>
+            </ion-list>
+        </div>
+        <!--本店推荐-->
+        <div class="commodity recommend_pro" *ngIf="shopsettings.isShopRecommend==true">
+            <h4 class="h_style"><i class="icon iconfont icon-title_line"></i>本店推荐
+                <!--<a href=""><span class="more abs ft">more></span></a>-->
+            </h4>
+            <ul class="cf">
+                <li *ngFor="let recommendlist of shop_data.shopRecommend">
+                    <!--<a href="">-->
+                    <p class="pro_img"><img [src]="recommendlist.img" alt=""></p>
+                    <p class="pro_name f14 g3">{{recommendlist.title}}</p>
+                    <p class="pro-pirce">
+                        <em class="red f14 f_l">￥{{recommendlist.price/100.00 | number:'1.1-2'}}</em>
+                        <!--<del class="g9 f_r f12">￥18.0</del>-->
+                    </p>
+                    <!--</a>-->
+                </li>
+            </ul>
+        </div>
+        <!-- <div> 用户评价 -->
+        <div id="recommend"></div>    
+        <div>
+          <h4 class="h_style"><i class="icon iconfont icon-title_line" ></i>网友点评 &nbsp;({{toltalpage.totalPage||0}})</h4>
+          <ul >
+            <li *ngFor="let item of toltalpage.datas" style="display:block;clear:both;border-bottom:1px solid #eeeeee;margin:10px 0 0 10px">
+              <div style="width: 100%;height: 3rem;">
+                  <img [src]="item.customer.photo||'http://tse4.mm.bing.net/th?id=OIP.JVPhjQ16xKLbbA_LoSI7uQEsEs&w=161&h=160&c=7&qlt=90&o=4&pid=1.7'" alt="" style="width: 40px;height:40px;float:left;display:block;border-radius: 20px;">
+
+                  <div style="height: 100%;width:auto;position:relative;left:10px">
+                        <p style="height:49%">
+                           {{item.nickName}}
+                        </p>
+                        <div>
+                            <p class="star-level">
+                                <span class="star" *ngIf='item.star==1'>
+                                  <i class="star-yellow star-default"></i>
+                                  <i class="star-default"></i>
+                                  <i class="star-default"></i>
+                                  <i class="star-default"></i>
+                                  <i class="star-default"></i>
+                                </span>
+                                <span class="star" *ngIf='item.star==2'>
+                                  <i class="star-yellow star-default"></i>
+                                  <i class="star-yellow star-default"></i>
+                                  <i class="star-default"></i>
+                                  <i class="star-default"></i>
+                                  <i class="star-default"></i>
+                                </span>
+                                <span class="star" *ngIf='item.star==3'>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-default"></i>
+                                    <i class="star-default"></i>
+                                </span>
+                                <span class="star" *ngIf='item.star==4'>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-default"></i>
+                                </span>
+                                <span class="star" *ngIf='item.star==5'>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                    <i class="star-yellow star-default"></i>
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                      </div>
+                    <div style="width:88%;margin-left:50px;clear:both;text-overflow:ellipsis;margin-top:20px" readonly="readonly">
+                        <span>{{item.content.length>100&&item.isShowTxt?item.content.substring(0,99):item.content}}</span>
+                        <span *ngIf="item.content.length>100" style="color:#1A83E5" (click)="showAllTxt($event,item)">全文</span>
+                    </div>
+                    <ul style="margin:10px 0 10px 50px;display:inline-block">
+                        <li *ngFor="let img of item.pictures" style="display:inline-block;margin-right:15px;width:90px;height:90px;margin-bottom:10px">
+                            <img [src]="img.dimgUrl" alt="" style="width:100%;height:100%" (click)="getWinodowSize(item.pictures,img.dimgUrl)">
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+
+                    <div class="pingj" *ngIf="userAppraise" style="clear:both;text-align:center;height:40px;position:relative;top:15px;padding:5px 0"
+                        (click)="jumpUserP()">
+                        更多用户评价（{{toltalpage.totalPage||0}}）
+                    </div>
+                    <div *ngIf="!userAppraise" style="text-align:center">
+                        暂无评价
+                    </div>
+
+        </div>
+        <!--商家信息-->
+        <div style="height:0;clear:both" id="businessInfo"></div>
+        <div class="business_info pb40">
+            <h4 class="h_style"><i class="icon iconfont icon-title_line"></i>商家信息</h4>
+            <aside class="g3">
+                <h6>{{shop_data.name}}</h6>
+                <p class="f14">营业时间：{{shopsettings.businessHoures}}</p>
+                <dl class="pt10 cf">
+                    <dd *ngIf="!isWifi"><i class="icon iconfont icon-wifidayuanicon"></i><span class="f13">FREE Wi-Fi</span></dd>
+                    <dd *ngIf="!isStop"><i class="icon iconfont icon-mianfei"></i><span class="f13">免费泊车</span></dd>
+                    <dd *ngIf="!isPayCard"><i class="icon iconfont icon-shuaqia"></i><span class="f13">银联刷卡</span></dd>
+                    <!--<dd *ngIf="!isPreferentialPay"><i class="icon iconfont icon-weixinzhifu1"></i><span class="f13">微信支付</span></dd>-->
+                    <dd *ngIf="!isBuy"><i class="icon iconfont icon-gengduofuwu"></i><span class="f13">支持团购</span></dd>
+                </dl>
+            </aside>
+        </div>
+        <!--面包新语-->
+        <div class="shop-intro">
+            <h4 class="h_style"><i class="icon iconfont icon-title_line"></i>{{shop_data.name}}</h4>
+            <article class="pl15px pr15px lh22" [innerHTML]="shop_data.detail">
+                <!--<p class="g3">
+                    {{shop_data.detail}}
+                </p>-->
+            </article>
+        </div>
+    </div>
+    <div  style="position:fixed;top:20%;text-align:center;width:100%;">
+          <img   [src]="bigImgUrl" alt="" id="pingjiaImgBig" style="display:none;margin:20% auto; position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;" (click)="closeImgBox()">
+    </div>
+</ion-content>
+<ion-footer>
+        <button   style="background:black;color:white;width:100%;height:40px" (click)="jumpDianping()" class="f_r pct40" >写点评</button>
+</ion-footer>

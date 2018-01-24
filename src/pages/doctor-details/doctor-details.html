@@ -1,0 +1,22 @@
+<!--
+  Generated template for the DoctorDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar style="display:none">
+    <ion-title>医生详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+        <div [innerHTML]="doctorList.content"></div>
+
+        <div *ngFor=" let item of doctorList.picturesList">
+            <img src="{{item.dimgUrl}}" alt="">
+        </div>
+</ion-content>

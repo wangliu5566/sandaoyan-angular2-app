@@ -1,0 +1,35 @@
+<!--
+  Generated template for the JdNavigatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header [hidden]="true">
+
+    <ion-navbar>
+        <ion-title>{{jddataobj.name}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="sliderTop">
+        <!-- <span class="full_view"><img src="../../../assets/images/quanjin.png" alt=""></span> -->
+        <!--图片切换-->
+        <ion-slides #ionSlides pager autoplay="5000" loop='true' class="jddh-slides" *ngIf="jddataobj.pictures?.length >= 1">
+            <ion-slide *ngFor="let pices of jddataobj.pictures">
+                <img [src]="pices.dimgUrl" alt="">
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div class="playbox">
+        <div class="playerbox">
+            <div id="player1" class="aplayer"></div>
+        </div>
+    </div>
+    <div padding class="jd_content" [innerHTML]="jddataobj.content">
+    </div>
+</ion-content>
+<!--播放器 -->
+<script src="../../../assets/lib/APlayer.min.js"></script>

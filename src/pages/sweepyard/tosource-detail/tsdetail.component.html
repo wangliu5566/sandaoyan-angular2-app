@@ -1,0 +1,13 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <ion-title>{{allDetail.title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="p10">
+    <h5 class="t_c">{{allDetail.title}}</h5>
+    <div class="g9 t_c mt5">{{allDetail.updateDate | date:"yyyy-MM-dd"}} ￥{{allDetail.price | number:'2.1-2'}}</div>
+    <div class="t_c mt10">
+        <img [src]='allDetail.titlePage || DEFAULT_picmd' width="100%" alt="" class="title-img" />
+    </div>
+    <div class="text mt10" [innerHTML]="allDetail.content"></div>
+</ion-content>

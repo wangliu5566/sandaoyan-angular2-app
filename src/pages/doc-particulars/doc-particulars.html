@@ -1,0 +1,103 @@
+<!--
+  Generated template for the DocParticularsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header [hidden]="true">
+
+  <ion-navbar>
+    <ion-title>医生详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="position:relatvie;">
+    <div class="dhr"></div>
+    <div style="width:100%;height:108px;padding:10px;position:relative;border-bottom:1px solid #eeeeee;overflow:hidden;overflow:hidden">
+        <img [src]="docObj.photo" alt="" style="width:80px;height:80px;position:absolute;top:10px;border-radius:40px">
+        <p style="display:inline-block;margin-left:100px;margin-top:10px;height:77px;overflow:hidden">
+          <span style="font-size:21px">{{docObj.name}}</span>
+          <span style="font-size:12px;padding:4.5px;border-radius: 4px;background:#c62707;color:white;position:relative;top:-2.5px;left:10px">{{docObj.jobTitle}}</span><br>
+          <span style="display:inline-block;font-size:15px;color:#999999;width:200px;margin-top:10px">
+            {{docObj.detail}}            
+          </span>
+        </p>
+    </div>
+    <p class="pdleft" style="width:100%;height:45px;line-height:55px;font-size:15px;color:#999999">
+      简介
+    </p>
+    <p class="pdleft introdC" >
+      {{docObj.introduction}}
+    </p>
+    <p class="pdleft" style="width:100%;height:30px;font-size:15px;color:#999999">
+      医生擅长
+    </p>
+    <p class="pdleft introdC">
+      {{docObj.skilled}}
+    </p>
+    <div  class="dhr"></div>
+    <p class="pdleft" style="width:100%;height:45px;line-height:45px;font-size:15px;color:#999999;border-bottom:#eeeeee 1px solid">
+      医生排班
+    </p>
+    <ul>
+      <li *ngIf="docObj.amSchedue" (click)="GoYuyue('amSchedue')" class="borderBT">
+        <span>{{docObj.amSchedue.schedueDay | date:'yyyy&nbsp;年&nbsp;MM&nbsp;月&nbsp;dd&nbsp;日'}}&nbsp;上午</span>
+          <span class="red">&yen; {{docObj.bookPrice/100}}</span>
+          <button class="{{amNo?'grayy':'redd'}}">
+             {{amNo?'剩'+amNo:'无号'}}
+          </button>
+      </li>
+      <li *ngIf="docObj.pmSchedue" (click)="GoYuyue('pmSchedue')"  class="borderBT">
+          <span>{{docObj.pmSchedue.schedueDay | date:'yyyy&nbsp;年&nbsp;MM&nbsp;月&nbsp;dd&nbsp;日'}}&nbsp;下午</span>
+          <span class="red">&yen; {{docObj.bookPrice/100}}</span>
+          <button class="{{pmNo?'grayy':'redd'}}">
+            {{pmNo?'剩'+pmNo:'无号'}}
+          </button>
+      </li>
+
+    </ul>
+    <p class="pdleft" *ngIf="!docObj.amSchedue&&!docObj.pmSchedue" style="text-align:center;width:100%;height:45px;line-height:45px;font-size:15px;color:black;border-bottom:#eeeeee 1px solid">
+      暂无排班
+    </p>
+    <div class="dhr"></div>
+
+    <p class="pdleft" style="width:100%;height:45px;line-height:45px;font-size:15px;color:#999999">
+      预约须知
+    </p>
+    <p class="pdleft introdC">
+       因不能面诊患者，无法全面了解病情，以上建议仅供参考，具体诊疗请一定到医院指导下进行。
+    </p>
+<!-- 弹出框 -->
+    <div class="tanchu" *ngIf="isshow">
+       <div class="tcTittle" (click)="closeTC()">X</div>
+       <p>{{ishave?"当前挂号人信息如下：":"当前无挂号人信息，请添加："}}</p>
+       <table *ngIf="ishave" border="1" style="margin:10px 0 0 0;text-align:center;width:90%">
+         <tr>
+           <th>姓名</th>
+           <th>{{name}}</th>
+         </tr>
+         <tr>
+           <td>身份证号</td>
+           <td>{{idCard}}</td>
+         </tr>
+         <tr>
+           <td>社保卡号</td>
+           <td>{{yuyueObj.medicalInsurance||"无"}}</td>
+         </tr>
+       </table>
+
+       <div *ngIf="!ishave">
+         姓名 ： <br><input type="text" id="name"  [(ngModel)]="name"><br>
+         身份证号 ：<br> <input type="text" id="idCard" [(ngModel)]="idCard" maxlength="18"><br>
+         社保卡号 ： <br><input type="text" id="shebao" placeholder="选填" [(ngModel)]="shebaoCard" maxlength="10">（选填）
+       </div>
+       <div  class="tancBTN" style="margin-right:10px;background:#1a83e5;color:white" (click)="yseBTN()">
+         确认并前往支付
+       </div>
+       <div  class="tancBTN" (click)="noBTN()">
+         {{ishave?'返回我的挂号修改':'取消'}}
+       </div>
+    </div>
+</ion-content>

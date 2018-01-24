@@ -1,0 +1,11 @@
+page-doctor-list {
+    // ul{}
+    li{margin-top: 10px;background: white;width: 100%;height: 159px;padding-top: 10px;padding-left: 10px}
+    .h107{height: 107px;width: 100%;overflow: hidden;border-bottom: #eeeeee 1px solid}
+    .h49{width:100%;height: 49px;line-height: 45px;font-size: 15px}
+    .jobTitle{background: red;color: white;padding: 3px;font-size: 10px;margin-left: 10px;position:relative;top:-3px;border-radius: 4px}
+    .innTTT{font-size: 15px;color: #999999;width:200px!important;margin-top:10px }
+    .jiantou{width:7px;height:15px;position:relative;top:3px;background-image: url('../assets/icon/enter.png');background-size:100% 100%;display: inline-block}
+    .gray{color:gray;font-size: 12px;position: relative;top:-2px;right:10px}
+    .red{color:red;font-size: 12px;position: relative;top:-2px;right:10px}
+}

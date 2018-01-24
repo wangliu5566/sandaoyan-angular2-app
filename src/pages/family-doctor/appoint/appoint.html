@@ -1,0 +1,94 @@
+<!--<ion-title [hidden]="true">--><!--预约服务</ion-title>-->
+<ion-header [hidden]="true">
+  <ion-navbar>
+    <ion-title>预约服务</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="main">
+        <div class="box">
+            <img src="assets/images/basic.jpg" />
+            <h4>基础服务套餐</h4>
+            <div class="text" id="text">
+                <p>1.为签约居民建立个人电子健康档案并随时更新档案内容。</p>
+                <p>2.发放健康宣传资料每年至少一次，开展健康大讲堂和健康教育讲座等活动每年不少于1次。</p>
+                <p>3.对首次签约的服务对象从生活方式、健康状况等方面进行全面评估，并进行个性化的健康指导。</p>
+                <p>4.提供免费预约门诊挂号。</p>
+            </div>
+            <button class="appoint-btn" [disabled]="appointBtn1== '已预约'" [ngStyle]="{'background-color':appointBtn1 === '立即预约' ? '#f53d3d' : '#ddd','color':appointBtn1 === '立即预约' ? '#fff' : '#333'}" (click)="appoint('basic','1')" id="appointBtn1">{{appointBtn1}}</button>
+        </div>
+        <div class="box">
+            <img src="assets/images/older.jpg" />
+            <h4>65岁及以上老年人服务套餐</h4>
+            <div class="text">
+                <p>1.每年提供一次健康体检，内容包括生活方式、健康状况评估、体格检查、辅助检查（血常规、尿常规、肝功能、肾功能、血酯、血糖、心电图等）。</p>
+                <p>2.解读健康体检结果，给予每年一次健康指导、中医体质辨识和适宜的中医干预。</p>
+                <p>3.对空巢、行动不便并有需求的65岁以上老年人免费提供上门健康咨询和指导服务。</p>
+            </div>
+            <button class="appoint-btn" [disabled]="appointBtn2 == '已预约'" [ngStyle]="{'background-color':appointBtn2 === '立即预约' ? '#f53d3d' : '#ddd','color':appointBtn2 === '立即预约' ? '#fff' : '#333'}" (click)="appoint('older','2')" id="appointBtn2">{{appointBtn2}}</button>
+        </div>
+        <div class="box">
+            <img src="assets/images/blood.jpg" />
+            <h4>高血压服务套餐</h4>
+            <div class="text">
+                <p>1.提供4次面对面随访，进行健康评估、病情监测、生活方式及行为干预、用药指导、个性化健康指导、效果评价等。</p>
+                <p>2.每年提供一次较全面健康体检，体检项目包括生活方式、健康状况评估、体格检查、辅助检查（空腹血糖）、解读体检结果并根据结果给予健康指导。</p>
+                <p>3.实施中医干预。</p>
+            </div>
+            <button class="appoint-btn" [disabled]="appointBtn3 == '已预约'" [ngStyle]="{'background-color':appointBtn3 === '立即预约' ? '#f53d3d' : '#ddd','color':appointBtn3 === '立即预约' ? '#fff' : '#333'}" (click)="appoint('hypertension','3')"  id="appointBtn3">{{appointBtn3}}</button>
+        </div>
+        <div class="box">
+            <img src="assets/images/diabetes.jpg" />
+            <h4>糖尿病服务套餐</h4>
+            <div class="text">
+                <p>1.提供4次面对面随访，每季度对糖尿病患者监测血糖一次，对其进行健康评估、病情监测、行为干预、用药指导、个性化健康指导、效果评价等。</p>
+                <p>2.提供一次较全面健康体检，体检项目包括生活方式、健康状况评估、体格检查、辅助检查（空腹血糖）、解读体检结果并根据体检结果给予健康指导。</p>
+                <p>3.实施中医干预。</p>
+            </div>
+            <button class="appoint-btn" [disabled]="appointBtn4 == '已预约'" [ngStyle]="{'background-color':appointBtn4 === '立即预约' ? '#f53d3d' : '#ddd','color':appointBtn4 === '立即预约' ? '#fff' : '#333'}" (click)="appoint('diabetes','4')"  id="appointBtn4">{{appointBtn4}}</button>
+        </div>
+        <!--<div class="box">
+      <img src="assets/images/pregnant.jpg"/>
+      <h4>孕产妇服务套餐</h4>
+      <div class="text">
+        <p>1. 5次孕期（孕6-12周、13-19周、20-24周、25-28周、30-32周、33-36周、37-41周）保健管理，产后2次访视。</p>
+        <p>2.一般体格检查及孕期营养、心理等健康指导。</p>
+        <p>3.产后常见问题指导。</p>
+        <p>4.早孕妇女艾滋病咨询和自愿检测。</p>
+      </div>
+      <button class="appoint-btn" (click)="appoint()">立即预约</button>
+    </div>
+    <div class="box">
+      <img src="assets/images/older.jpg"/>
+      <h4>0-6儿童服务套餐</h4>
+      <div class="text">
+        <p>1.为家庭新生儿开展2次访视（出院后1周内和满28天）。</p>
+        <p>2.婴幼儿时期（1岁以内至少4次，第2年和第3年每年至少2次）提供体格测量（体重、身长、头围），常规体格检查，生长发育和心理行为发育评估，健康指导、喂养指导。</p>
+        <p>3.定期（6-8月龄，18，30月龄）进行血常规检查。</p>
+        <p>4.定期（6，12，18，24，30，36月龄）进行中医饮食调养、起居指导、传授家长进行常规穴的按揉和捏脊等在家自行操作的中医技术。</p>
+      </div>
+      <button class="appoint-btn" (click)="appoint()">立即预约</button>
+    </div>
+    <div class="box">
+      <img src="assets/images/psychosis.jpg"/>
+      <h4>重精服务套餐</h4>
+      <div class="text">
+        <p>1.提供4次面对面随访，8次电话随访，进行健康评估、病情监测、生活方式及行为干预、用药指导、个性化健康指导、效果评价等。</p>
+        <p>2.每年提供一次健康体检，内容包括生活方式、健康状况评估、体格检查、辅助检查（血常规、尿常规、肝功能、肾功能、血酯、血糖、心电图等）。</p>
+      </div>
+      <button class="appoint-btn" (click)="appoint()">立即预约</button>
+    </div>
+    <div class="box">
+      <img src="assets/images/help.jpg"/>
+      <h4>特扶服务套餐</h4>
+      <div class="text">
+        <p>1.每年提供一次健康体检，内容包括生活方式、健康状况评估、体格检查、辅助检查（血常规、尿常规、肝功能、肾功能、血酯、血糖、心电图等）。</p>
+        <p>2.每年提供一次上门服务。</p>
+      </div>
+      <button class="appoint-btn" (click)="appoint()">立即预约</button>
+    </div>-->
+    </div>
+
+
+</ion-content>

@@ -1,0 +1,130 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{order_data.itemName}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content overflow-scroll="true">
+    <!--订单信息-->
+    <div class="orders-detail-info">
+        <ion-list (click)="gotoprodec(order_data.itemId)">
+            <ion-item>
+                <ion-thumbnail item-start>
+                    <img [src]="order_data.orderImage">
+                </ion-thumbnail>
+                <h2 class="cf">
+                    <span class="f_l">{{order_data.itemName}}</span>
+                    <span class="f_r red f14" *ngIf="order_data.status=='waitingPay'">待付款</span>
+                    <span class="f_r f14" *ngIf="order_data.status=='canUse'">可使用</span>
+                    <span class="f_r f14 g9" *ngIf="order_data.status=='finished'">已完成</span>
+                    <span class="f_r red f14" *ngIf="order_data.status=='refunding'">退款中</span>
+                    <span class="f_r f14" *ngIf="order_data.status=='refund'">已退款</span>
+                    <span class="f_r f14 g9" *ngIf="order_data.status=='refundFail'">退款失败</span>
+                </h2>
+                <p class="f16 g9">券码数量：{{order_data.number || '1'}}</p>
+                <p class="order-price" *ngFor="let couponcodes of order_data.localOrderItemList | slice:0:1">
+                    <span class="f16">￥{{couponcodes.salePrice/100.00 | number:'1.1-2'}}</span>
+                    <del class="g9 f14 ml10">￥{{couponcodes.marketPrice/100.00 | number:'1.1-2'}}</del>
+                </p>
+            </ion-item>
+        </ion-list>
+        <p class="merit">
+            <span *ngIf="order_data.nowReturn==1"><i class="icon iconfont icon-xuanzhong"></i>随时退</span>
+            <span *ngIf="order_data.outdateReturn==1"><i class="icon iconfont icon-xuanzhong"></i>过期退</span>
+            <span *ngIf="order_data.unReservation==1"><i class="icon iconfont icon-xuanzhong"></i>免预约</span>
+            <span *ngIf="order_data.canAppend==1"><i class="icon iconfont icon-xuanzhong"></i>可叠加</span>
+        </p>
+    </div>
+    <p class="bb6"></p>
+    <!--商品券码-->
+    <div *ngIf="order_data.status!='waitingPay'">
+        <!--*ngIf="order_data.status!='waitingPay'"-->
+        <div padding class="coupons-code cf">
+            <h6 class="h_style cf">
+                <span class="f_l"><i class="icon iconfont icon-title_line"></i>商品券码</span>
+                <button ion-button color="danger" clear item-end (click)="apply_refund()" class="f_r" *ngIf="order_data.status=='canUse'">申请退款</button>
+                <!--*ngIf="order_data.status=='canUse'"-->
+            </h6>
+            <p class="erweima">
+                <img [src]="imgsrc">
+            </p>
+            <p class="code pt10 cf" *ngFor="let couponcodes of order_data.localOrderItemList" (click)='opencode(couponcodes)'>
+                <span class="f_l">券码1：{{couponcodes.useCode}}</span>
+                <span class="blue f_r" *ngIf="couponcodes.status=='canUse'">未使用</span>
+                <span class="g9 f_r" *ngIf="couponcodes.status=='finished'">已使用</span>
+                <span class="red f_r" *ngIf="couponcodes.status=='refunding'">退款中</span>
+                <span class="g9 f_r" *ngIf="couponcodes.status=='refundFail'">退款失败</span>
+                <span class="g9 f_r" *ngIf="couponcodes.status=='refund'">已退款</span>
+            </p>
+        </div>
+        <p class="bb6"></p>
+    </div>
+
+    <!--商家信息-->
+    <div padding class="business-msg cf" (click)="gotoshopdec(order_data.shopId)">
+        <h6 class="h_style cf">
+            <span class="f_l"><i class="icon iconfont icon-title_line"></i>商家信息</span>
+            <em class="f_r"><i class="icon iconfont icon-phone1"></i></em>
+            <!--<em class="f_r"><a href="tel:{{shopinfo.servicerMobile}}" (click)="callshop()"><i class="icon iconfont icon-phone1"></i></a></em>-->
+        </h6>
+        <p class="cf ">
+            <b class="f14 f_l ">{{shopinfo.name}}</b>
+        </p>
+        <p class="pt10 cf">
+            <span class="f_l">地址：{{shopinfo.address}}</span>
+            <span class="g9 f_r mt5px"><i class="icon iconfont icon-dingwei1"></i>{{shopinfo.distanceToMe/100000 || '1'}}km</span>
+        </p>
+    </div>
+    <p class="bb6 "></p>
+    <!--商品内容-->
+    <div class="pro-con">
+        <h5 class="h_style"><i class="icon iconfont icon-title_line"></i>商品内容</h5>
+        <div class="pro-con-li">
+            <!--<p class="g6">·行程特色</p>
+            <p class="cf pt8px f14">本产品适合首次旅游三道堰客户，1天时间包揽美景，行程涵盖日月 潭、阿里山、太鲁阁等所有经典经典。
+            </p>
+            <p class="g6 pt15 f14">·特别赠送</p>-->
+            <p class="cf pt8px f14">{{itemdetail.subTitle || '暂无信息'}}</p>
+        </div>
+    </div>
+    <p class="bb6 "></p>
+    <!--订单详情-->
+    <div class="order-info cf ">
+        <h5 class="h_style "><i class="icon iconfont icon-title_line"></i>订单详情</h5>
+        <div class="order-info-list">
+            <ion-item>
+                <ion-label>订单号</ion-label>
+                <ion-label class="g9">{{order_data.orderNo}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>下单时间</ion-label>
+                <ion-label class="g9">{{order_data.createDate | date:'yyyy-MM-dd HH:mm:ss'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>下单手机号</ion-label>
+                <ion-label class="g9">{{order_data.mobile || '暂无'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>下单数量</ion-label>
+                <ion-label class="g9">{{order_data.number || '1'}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>订单总价</ion-label>
+                <ion-label class="g9">￥{{order_data.actualAmount/100.00 | number:'1.1-2' || '0.00'}}</ion-label>
+            </ion-item>
+        </div>
+    </div>
+    <p class="bb6 "></p>
+    <!---->
+</ion-content>
+
+<ion-footer *ngIf="order_data.status=='waitingPay'">
+    <ion-toolbar class="tab_footer">
+        <span class="f_l t_r red pct60 dib pt10px pr10">惠享价：<em class="f18">￥{{order_data.actualAmount/100.00 | number:'1.1-2' || '0.00'}}</em></span>
+        <button ion-button fab-right color="danger" class="f_r pct40" (click)="payment()">立即支付</button>
+    </ion-toolbar>
+</ion-footer>

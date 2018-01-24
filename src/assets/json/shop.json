@@ -1,0 +1,65 @@
+ {
+     "code": 200,
+     "msg": "提交成功!",
+     "data": {
+         "totalPage": 1,
+         "pageSize": 20,
+         "pageNumber": 1,
+         "datas": [{
+             "id": 3,
+             "moduleId": 12,
+             "townId": 1,
+             "name": "霸王虾",
+             "address": "三道堰",
+             "level": 4,
+             "perCapita": 55,
+             "servicerMobile": "12132131",
+             "introduction": "救命的药",
+             "detail": "阿斯大多数",
+             "town": {
+                 "id": 1,
+                 "name": "三道堰",
+                 "key": 1
+             },
+             "module": {
+                 "id": 12,
+                 "name": "美食",
+                 "key": 12
+             },
+             "shopPictures": [{
+                 "id": 1,
+                 "simgUrl": "/1111/aaa",
+                 "mimgUrl": "/222/bbb",
+                 "dimgUrl": "/333/ccc",
+                 "key": 1
+             }],
+             "shopSettings": {
+                 "id": 1,
+                 "businessHoures": "周一至周五11：00~14：00",
+                 "preferentialPay": 95,
+                 "isPreferentialPay": true,
+                 "isBuy": true,
+                 "isWifi": true,
+                 "isStop": true,
+                 "isPayCard": true,
+                 "key": 1
+             },
+             "shopRecommend": [{
+                     "title": "皮皮虾",
+                     "img": "/12/aa.jpg",
+                     "price": 32
+                 },
+                 {
+                     "title": "大龙虾",
+                     "img": "/22/cc.jpg",
+                     "price": 333
+                 }
+             ],
+             "distanceToMe": 0,
+             "localItem": [],
+             "key": 3
+         }],
+         "notEmpty": true
+     },
+     "status": 200
+ }

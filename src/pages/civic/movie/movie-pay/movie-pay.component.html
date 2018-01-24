@@ -1,0 +1,54 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{filmObj.filmName}}-提交订单</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content overflow-scroll="true">
+    <div class="nose_cell bbe pl10 pr10">
+        <div class="nose_cell_item">
+            <h5 class="mt0 mb0">{{filmObj.filmName}}</h5>
+            <div class="g9 f16 mt5">{{filmObj.sessionDate | date:'MM-dd'}} {{filmObj.startTime}} {{filmObj.screenType}}</div>
+        </div>
+        <div class=" wd100 t_r">
+            <span class="f18">{{filmObj.screenName}}</span>
+        </div>
+    </div>
+
+
+
+    <div class="p10">已选座位：<span *ngFor="let item of filmObj.selectObj" class="mr10">{{item.name}}</span></div>
+    <div class="moviepay_dirver"></div>
+    <div>
+        <div class="p10"><span class="g9">支付前,将为你预留</span> <span class="red f16">10</span> 分钟</div>
+        <div class="t_c">
+            <img [src]="filmDetail.poster" width="270" alt="">
+        </div>
+        <!--<ion-scroll class="moviepay_scroll" scrollX="true">
+            <ul>
+                <li></li>
+            </ul>
+        </ion-scroll>-->
+    </div>
+    <div class="h50"></div>
+</ion-content>
+
+<!--<div class="moviepay_bpay t_r">
+    <span class="red mr10">优惠价：<span class="f18">￥{{filmObj.price || '0.00'}}</span></span>
+    <div class="wd120 f_r">
+        <button ion-button full color="danger" (click)="GotoPayNow()">立即支付</button>
+    </div>
+</div>-->
+
+<div class="moviepay_bpay">
+    <div class="nose_cell">
+        <div class="nose_cell_item t_r pt5 pr10">
+            优惠价：<span class="f18 red">￥{{filmObj.price || '0.00'}}</span> <br>
+            <span class="g9 f12">(含服务费:{{filmObj.feePrice || '0'}})</span>
+        </div>
+        <div class="wd120"><button ion-button full color="danger" (click)="GotoPayNow()">立即支付</button></div>
+    </div>
+</div>

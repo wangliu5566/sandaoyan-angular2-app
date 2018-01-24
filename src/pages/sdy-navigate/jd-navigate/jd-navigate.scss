@@ -1,0 +1,144 @@
+page-jd-navigate {
+    .sliderTop {
+        height: 278px;
+        position: relative;
+        .full_view {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 2;
+            img {
+                width: 56px;
+                height: 56px;
+            }
+        }
+        .jddh-slides {
+            height: 278px;
+            .swiper-slide{
+                align-items: baseline;
+            }
+            .swiper-container-horizontal>.swiper-pagination-bullets{
+                bottom: 35px;
+                .swiper-pagination-bullet{
+                    background-color: transparent;
+                    border: solid 1px #fff;
+                    opacity: 1;
+                }
+                .swiper-pagination-bullet-active{
+                    background-color: #fff;
+                }
+            }
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+    }
+    .playbox {
+        height: 64px;
+        border-bottom: solid 10px #eee;
+        position: relative;
+        .playerbox {
+            width: calc(100% - 20px);
+            height: 64px;
+            border-radius: 64px;
+            padding: 10px;
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+            z-index: 2;
+            background: #fff;
+            box-shadow: 0 3px 10px rgba(74, 74, 74, 0.12);
+        }
+        .aplayer {
+            box-shadow: none;
+            margin: 0;
+            .aplayer-info {
+                padding-top: 0;
+                padding-left: 0;
+                margin-left: 50px;
+                height: 44px;
+                .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+                    background-color: #c62707;
+                    .aplayer-thumb {
+                        background: #c62707 !important;
+                        border-color: #c62707;
+                        top: -1px;
+                        margin-right: -8px;
+                    }
+                }
+            }
+            .aplayer-pic {
+                width: 44px;
+                height: 44px;
+                border-radius: 44px;
+                &.animat{
+                    animation: circle 2s infinite linear;
+                    -webkit-animation: circle 2s infinite linear;
+                }
+                .aplayer-play {
+                    background: url("../../../assets/images/bofang.png") center center no-repeat;
+                    border: none;
+                    margin: -12px 0 0 -12px;
+                    &.aplayer-button{
+                        opacity: 1;
+                    }
+                    .aplayer-icon{
+                        opacity: 1;
+                    }
+                    .aplayer-icon-play:before {
+                        content: "";
+                    }
+                    svg {
+                        opacity: 0;
+                    }
+                }
+                .aplayer-pause {
+                    background: url("../../../assets/images/zanting.png") center center no-repeat;
+                    border: none;
+                    width: 20px;
+                    height: 20px;
+                    top: 50%;
+                    left: 50%;
+                    margin: -10px 0 0 -12px;
+                    &.aplayer-button{
+                        opacity: 1;
+                    }
+                    .aplayer-icon{
+                        opacity: 1;
+                    }
+                    .aplayer-icon-pause:before {
+                        content: "";
+                    }
+                    svg {
+                        opacity: 0;
+                    }
+                }
+            }
+            .aplayer-music{
+                padding-bottom: 0;
+                margin-bottom: 10px;
+                .aplayer-dub-log{
+                    background: url("../../../assets/images/peiyinge.png") center center no-repeat;
+                    background-size: contain;
+                    width: 45px;
+                    height: 22px;
+                    float: right;
+                }
+            }
+        }
+    }
+    .jd_content {
+        color: #999;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    @-webkit-keyframes circle {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(-360deg);
+        }
+    }
+}

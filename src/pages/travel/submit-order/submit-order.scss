@@ -1,0 +1,43 @@
+page-submit-order {
+  //*{font-family: 微软雅黑;}
+  $color:#333;
+  .back-icon{float:left;}
+  .head-title{font-weight: normal;}
+  .order-info{width:100%;padding:15px 10px 0;overflow:hidden;background-color: #fff;margin-bottom:0;}
+  .order-name{width:80%;float:left;font-size:1.6rem;color:#000;}
+  .order-name div:last-of-type{font-size: 1.4rem;color:#666;margin-top:6px;}
+  .order-match{float:right;width:15%;font-size:1.7rem;margin-top:10px;}
+  .order-match div{text-align: right;}
+  .order-match div:last-of-type{font-size: 1.4rem;color:#666;text-decoration: line-through;margin-top:5px;}
+  .reduce,.add{width:30px;height:30px;font-size:20px;background: none;border:1px solid #ccc;text-align: center;}
+  .number{float:right;margin-top:1px;}
+  .number span{margin:0 10px;}
+  .num-list{height:49px;border-bottom:1px solid #ccc;line-height:50px;font-size: 1.4rem;}
+  .num-list-box{height:50px;padding:0 10px;background-color: #fff;margin-bottom:0;}
+  .main{width:100%;height:100%;background-color: #e5e5e5;}
+  .total-price{background-color: #fff;height:50px;padding:0 10px;line-height: 50px;width:100%;position: relative;margin-bottom:0;font-size: 1.4rem;}
+  .total-price .price{position: absolute;right:10px;}
+  .phone-box{margin-top:10px;font-size: 1.4rem;background-color: #fff;height:50px;padding:0 10px;line-height: 50px;width:100%;position: relative;}
+  .phone-box a{display:block;color:#333;}
+  .phone-icon{margin-left:5px;}
+  .tel{float:right;color:#666;}
+  .tel span{margin-right:3px;}
+  .footer{position: fixed;bottom:0;width:100%;height:44px;left:0;}
+  .pay{width:60%;height:100%;background-color: #fff;line-height: 44px;float:left;text-align: right;color:#e5271a;}
+  .pay span{font-size: 20px;}
+  .buy-btn{width:40%;height:100%;text-align: center;background-color: #e5271a;color:#fff;line-height: 44px;float:left;}
+  .line{margin-top:6px;}
+  .buy{height:44px;}
+  .tab_footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 44px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+    button {
+      border-radius: 0;
+      margin: 0;
+    }
+  }
+}

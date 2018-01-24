@@ -1,0 +1,15 @@
+<!--<ion-title [hidden]="true">{{details.name}}</ion-title>-->
+<ion-header [hidden]="true">
+  <ion-navbar>
+    <ion-title>{{details.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <p class="text" >{{details.title}} &nbsp; ({{details.subTitle}})</p>
+    <div class="text" [innerHTML]="details.detail"></div>
+
+    <div *ngFor="let item of details.localItemPictures">
+        <img src='{{item.dimgUrl}}' alt="" class="title-img" />
+    </div>
+</ion-content>

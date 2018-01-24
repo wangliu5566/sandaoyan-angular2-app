@@ -1,0 +1,116 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{cinemaFilmList.cinemaName}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content overflow-scroll="true" title="{{cinemaFilmList.cinemaName}}">
+    <div class="movieind_head f16" (click)='GogoMap()'>
+        <span class="iconfont icon-dingwei1 f_r"></span> 观影地址：{{cinemaFilmList.address}}
+    </div>
+    <div class="movieind_box">
+        <div #slides class="swiper-container movieind_banner" (ionSlideDidChange)="ionSlideDidChange()">
+            <div class="swiper-wrapper ">
+                <div class="swiper-slide" *ngFor="let item of cinemaFilmList.films" (click)="openModal({'filmNo':item.filmNo})">
+                    <img [src]='item.poster || DEFAULT_picmd' alt="">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <!--<ion-slides class="movieind_banner" (ionSlideDidChange)="ionSlideDidChange()">
+            <ion-slide *ngFor="let item of cinemaFilmList.films">-->
+        <!--<span class="sign01"><img src="assets/images/bq_5ale.png"  alt=""></span>-->
+        <!--<img [src]='item.poster || DEFAULT_picmd' alt="">
+            </ion-slide>
+        </ion-slides>-->
+
+    </div>
+    <h6 class="t_c f16">{{films.filmName}} <span class="red ml10">{{films.score}}</span></h6>
+    <div class="t_c g6 pb10 bbds">{{films.genres}} | {{films.year}}</div>
+    <!--
+    <a ion-item (click)="openModal({charNum: 0})">
+      Gollum
+    </a>-->
+    <!--
+    <button class="btn" id="openModal" onclick="openModalF()">dddddddddddddd</button>
+    <button class="btn" id="openModal" (click)="openModalFxxx()">222222</button>
+
+    <br>
+    <button class="btn " id="openModal" (click)="sendData()">ccccccccc</button>
+    <br>-->
+    <!--<button class="btn " id="openModal" (click)="testEve1()" style="height:50px;">mmmmmmm</button>-->
+
+
+
+    <!--购票-->
+    <div class="conent_slt">
+        <ion-scroll class="title_box" scrollX="true">
+            <!--<ul padding-left padding-right class="cf" [ngStyle]="{'width': titleUlWidth+'px'}">-->
+            <ul padding-left padding-right class="cf" [style.width.px]="titleUlWidth">
+                <li *ngFor="let item of sessionByFilm.dates,let i = index" [ngClass]="{'active':i==Indsession}" (click)="GetcurrsessionByFilm(i)"><span *ngIf="i<3">{{Dateitems[i]}}</span><span *ngIf="i>=3">{{item.week.cweek}}</span>({{item.sessionDate | date:"MM.dd"}})</li>
+                <!--{{Dateitems[i]}}-->
+                <!--<li>明天(6.15)</li>
+                <li>周五(6.16)</li>
+                <li>周六(6.17)</li>
+                <li>周六(6.17)</li>
+                <li>周六(6.17)</li>
+                <li>周六(6.17)</li>-->
+            </ul>
+        </ion-scroll>
+
+        <div class="conent_com pl10 pr10">
+            <div class="nose_cell bbe" *ngFor="let item of sessionByFilm.sessionses | DatePipe:'sessionDate':currDate" (click)="GotoBuy(item)">
+                <div class="nose_cell_item pct18">
+                    <div class="f20">{{item.startTime}}</div>
+                    <div class="g9">{{item.totalTime}}分钟</div>
+                </div>
+                <div class="nose_cell_item pct32">
+                    <div class="f16">{{sessionByFilm.language}} {{item.screenType}}</div>
+                    <div class="g9">{{item.screen?.screenName}}</div>
+                </div>
+                <div class="nose_cell_item t_r">
+                    <span class="red f18">￥{{item.standartPrice}}</span>
+                </div>
+                <div class="nose_cell_item wd50 t_r"><img src="assets/images/btn_goupiao.png" width="60" alt=""></div>
+            </div>
+            <!--<div class="nose_cell bbe">
+                <div class="nose_cell_item pct18">
+                    <div class="f20">17:40</div>
+                    <div class="g9">20:18散场</div>
+                </div>
+                <div class="nose_cell_item pct32">
+                    <div class="f16">英语 2D</div>
+                    <div class="g9">3号厅</div>
+                </div>
+                <div class="nose_cell_item t_r">
+                    <span class="red f18">￥32.0</span>
+                </div>
+                <div class="nose_cell_item wd50 t_r"><img src="assets/images/btn_goupiao.png" width="60" alt=""></div>
+            </div>
+            <div class="nose_cell bbe">
+                <div class="nose_cell_item pct18">
+                    <div class="f20">17:40</div>
+                    <div class="g9">20:18散场</div>
+                </div>
+                <div class="nose_cell_item pct32">
+                    <div class="f16">英语 2D</div>
+                    <div class="g9">3号厅</div>
+                </div>
+                <div class="nose_cell_item t_r">
+                    <span class="red f18">￥32.0</span>
+                </div>
+                <div class="nose_cell_item wd50 t_r"><img src="assets/images/btn_goupiao.png" width="60" alt=""></div>
+            </div>-->
+
+
+        </div>
+
+
+    </div>
+
+</ion-content>

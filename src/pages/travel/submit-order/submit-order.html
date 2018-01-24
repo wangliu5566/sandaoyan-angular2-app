@@ -1,0 +1,58 @@
+<!--
+  Generated template for the SubmitOrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="arrow-back" class="back-icon"></ion-icon>
+    </button>
+    <ion-title class="head-title">提交订单</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="main">
+    <ion-list class="order-info">
+      <div class="order-name">
+        <div>是发发萨芬啊方法啊方法</div>
+        <div>发沙发发撒伐舒服撒伐发</div>
+      </div>
+      <div class="order-match">
+        <div>￥{{price}}</div>
+        <div>￥{{marketPrice}}</div>
+      </div>
+      <div style="clear:both;"></div>
+      <div class="line">
+        <img src="assets/images/line.png"/>
+      </div>
+    </ion-list>
+    <ion-list class="num-list-box">
+      <div class="num-list">
+        <span>数量</span>
+        <div class="number">
+          <button class="reduce" (click) = "reduce()">-</button>
+          <span>{{count}}</span>
+          <button class="add" (click) = "add()">+</button>
+        </div>
+      </div>
+    </ion-list>
+    <ion-list class="total-price">
+      <span>总价</span>
+      <span class="price">￥{{count*price}}</span>
+    </ion-list>
+    <ion-list class="phone-box">
+      <a href="#">
+        手机
+        <div class="tel"><span>{{phone}}</span><ion-icon name="arrow-forward" class="phone-icon"></ion-icon></div>
+      </a>
+    </ion-list>
+  </div>
+  <div class="tab_footer fix">
+    <div class="f_l t_r red pct60 dib pt10px pr10">实付款：<em class="f18">￥{{count*price}}</em></div>
+    <button ion-button fab-right color="danger" class="f_r pct40 buy">立即购买</button>
+  </div>
+</ion-content>

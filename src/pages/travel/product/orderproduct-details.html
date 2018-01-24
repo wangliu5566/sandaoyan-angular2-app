@@ -1,0 +1,147 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{prod_data.title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content overflow-scroll="true" (ionScroll)="scrollHandler($event)">
+    <!--图片切换-->
+    <div class="rel">
+        <ion-slides pager autoplay="5000" loop='true' class="shop-detail-slides orderpro-detail" *ngIf="prod_data.localItemPictures?.length >= 1">
+            <ion-slide *ngFor="let propics of prod_data.localItemPictures">
+                <img [src]="propics.dimgUrl" alt=" ">
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <!--商品信息-->
+    <div padding class="pro-msg cf" id="promsgId">
+        <h6 class="cf"><span class="f_l">{{prod_data.title}}</span><em class="red f16 f_r">￥免费</em></h6>
+        <p class="g6 cf">
+            <span class="f14 f_l">{{prod_data.subTitle}}</span>
+        </p>
+    </div>
+    <p class="bb6"></p>
+    <!---->
+    <div class="block-two">
+        <!--预定内容-->
+        <div class="pro-con" *ngIf="prod_data.type=='reservation'">
+            <h5 class="h_style mb0"><i class="icon iconfont icon-title_line"></i>预定内容</h5>
+            <div class="pro-con-li pb15px pl15px pr15px">
+                <dl class="pt10 f14">
+                    <dd class="cf f14 g3 pt8px" *ngFor="let prodeclist of prod_data.localItemDetails | slice:0:1"><span class="f_l pct70">{{prodeclist.title}}&nbsp;&nbsp;&nbsp;&nbsp;1张</span> <em class="f_r">￥免费</em></dd>
+                </dl>
+            </div>
+        </div>
+        <!--代金券内容-->
+        <div class="pro-con" *ngIf="prod_data.type=='voucher'">
+            <h5 class="h_style mb0"><i class="icon iconfont icon-title_line"></i>代金券内容</h5>
+            <div class="pro-con-li pb15px pl15px pr15px">
+                <dl class="pt10 f14">
+                    <dd class="cf f14 g3 pt8px" *ngFor="let prodeclist of prod_data.localItemDetails | slice:0:1"><span class="f_l pct70">{{prodeclist.title}}&nbsp;&nbsp;&nbsp;&nbsp;{{prodeclist.count}}张</span> <em class="f_r">￥{{prodeclist.price/100.00 | number:'1.1-2'}}</em></dd>
+                </dl>
+            </div>
+        </div>
+        <!--农产品内容-->
+        <div class="pro-con" *ngIf="prod_data.type=='product'">
+            <h5 class="h_style mb0"><i class="icon iconfont icon-title_line"></i>农产品内容</h5>
+            <div class="pro-con-li pb15px pl15px pr15px">
+                <dl class="pt10 f14">
+                    <dd class="cf f14 g3 pt8px" *ngFor="let prodeclist of prod_data.localItemDetails | slice:0:1"><span class="f_l pct70">{{prodeclist.title}}&nbsp;&nbsp;&nbsp;&nbsp;{{prodeclist.count}}份</span> <em class="f_r">￥{{prodeclist.price/100.00 | number:'1.1-2'}}</em></dd>
+                </dl>
+            </div>
+        </div>
+        <p class="bb6"></p>
+        <!--更多图文信息-->
+        <div padding class="more-info cf" (click)="more(prod_data.id)" [attr.id]="prod_data.id">
+            <a href=""><span class="f_l f15">更多图文详情</span><i class="icon iconfont icon-arrowup f_r f18 fa-rotate-180"></i></a>
+        </div>
+        <p class="bb6"></p>
+        <!--预定须知-->
+        <div class="buy_notes cf">
+            <h5 class="h_style mb0"><i class="icon iconfont icon-title_line"></i>预定须知</h5>
+            <div class="pro-con-li pb15px pl15px pr15px">
+                <p class="g6 f14 pt15">•有效期</p>
+                <p class="pt8px">{{prod_data.validityStartDate | date:'yyyy-MM-dd'}} 至 {{prod_data.validityEndDate | date:'yyyy-MM-dd'}} <em *ngIf="!isCurrency">（周末、法定节假日通用）</em></p>
+                <p class="g6 f14 pt15">•使用规则</p>
+                <p class="pt8px">{{prod_data.useRules}}</p>
+                <p class="g6 f14 pt15">•规则说明</p>
+                <p class="pt8px">{{prod_data.rulesRemark}}</p>
+            </div>
+        </div>
+        <p class="bb6"></p>
+        <!--店铺信息-->
+        <div padding class="shop-msg">
+            <h6>{{shopmsg.name}}
+                <button ion-button color="dark" clear end (click)="callshop(shopmsg.servicerMobile)">
+                    <!--<a href="tel:{{shopmsg.servicerMobile}}" (click)="callshop(shopmsg.servicerMobile)"><i class="icon iconfont icon-phone1"></i></a>-->
+                    <i class="icon iconfont icon-phone1"></i>
+                </button>
+            </h6>
+            <p class="star-level">
+                <span class="star" *ngIf='shopmsg.level==1'>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                </span>
+                <span class="star" *ngIf='shopmsg.level==2'>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                </span>
+                <span class="star" *ngIf='shopmsg.level==3'>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-default"></i>
+                    <i class="star-default"></i>
+                </span>
+                <span class="star" *ngIf='shopmsg.level==4'>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-default"></i>
+                </span>
+                <span class="star" *ngIf='shopmsg.level==5'>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                    <i class="star-yellow star-default"></i>
+                </span>
+                <span class="per-capita">人均 ￥{{shopmsg.perCapita/100.00 | number:'1.1-2'}}</span>
+            </p>
+            <p (click)='GogoMap()'><i class="icon iconfont icon-dingwei1"></i>{{shopmsg.address}}</p>
+        </div>
+
+        <!--溯源信息-->
+        <div class="commodity" *ngIf="prod_data.type=='product'">
+            <p class="bb6"></p>
+            <h4 class="h_style"><i class="icon iconfont icon-title_line"></i>溯源信息</h4>
+            <div class="process_liu green">
+                <ul>
+                    <li *ngFor="let item of shoptosoure_data.traceDetail" [class]="item.key==1? 'start':''">
+                        <span class="sign01"></span>
+                        <div>{{item.title}}</div>
+                        <div class="mt8">{{item.operateDate | date:"y-MM-dd mm:ss"}}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!---->
+</ion-content>
+<ion-footer>
+    <ion-toolbar class="tab_footer">
+        <span class="f_l t_r red pct60 dib pt10px pr10">惠享价：<em class="f18">￥免费</em></span>
+        <button ion-button fab-right color="danger" class="f_r pct40" (click)="buy()">预定</button>
+    </ion-toolbar>
+</ion-footer>

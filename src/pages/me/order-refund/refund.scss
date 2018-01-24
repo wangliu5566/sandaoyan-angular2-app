@@ -1,0 +1,28 @@
+page-refund {
+    background: #eee;
+    bottom: 50px;
+    .content-ios {
+        background: transparent;
+    }
+    ion-item-divider {
+        ion-label {
+            color: #999;
+        }
+    }
+    ion-label {
+        font-size: 1.5rem;
+    }
+    .coupon-code-num {
+        width: 85px;
+        display: inline-block;
+    }
+    .item-ios.item-block .item-inner:last-child {
+        border-bottom: none;
+    }
+    .red {
+        color: #da211c;
+    }
+    .button-full-ios {
+        margin-bottom: 50px;
+    }
+}

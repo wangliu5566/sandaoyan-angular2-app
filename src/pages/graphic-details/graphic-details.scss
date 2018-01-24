@@ -1,0 +1,41 @@
+page-hello-ionic {
+  .main{width:100%;height:auto;background-color: #e5e5e5;overflow: hidden;}
+  .content1{width:100%;height:auto;background-color: #fff;padding-bottom:20px;}
+  .top{position: relative;padding: 10px 1.2em}
+  .top>img{width:100%;height:auto;}
+  .top>div{position: relative;width:90%;margin:12px auto 0;}
+  .top .name{font-size: 16px;color:#000;font-weight: bold;margin-top:15px;}
+  .top p{color:#999;font-size: 13px;margin-top:12px;}
+  .collect img{width:12px;height:auto;position: relative;top:-1px;margin-right:8px;}
+  .eye{margin-left:20px;}
+  .eye img{width:14px;height:auto;position: relative;top:-1px;margin-right:8px;}
+  .text {
+    font-size: 0.28rem;color:#4d585d;
+    line-height: 0.46rem!important;
+    img{
+      margin:0.2rem 0
+    }
+    p{
+      padding: 0 0.2rem;
+      img{width: 100%}
+      span{
+      width: 100%;display:block;
+      img{width: 100%!important;height:auto;margin-top:10px;margin-bottom:10px;}
+      }
+    }
+
+  }
+  
+  .recommend{width:100%;height:auto;background-color: #fff;margin-top:12px;overflow: hidden;}
+  .recommend>div{width:90%;height:auto;margin:10px auto;background-color: #f5f5f5;padding:8px;color:#666;font-size: 14px;line-height: 36px;}
+  .recommend>div span{color:#666;}
+  .recommend>div p{border-bottom:1px solid #eee;width:92%;margin:auto;}
+  .recommend>div p:last-of-type{border:none;}
+  .collect-btn{padding:5px 10px;background-color: #e5251a;color:#fefefe;position: absolute;top:0;right:0px;font-size: 12px;line-height: 18px;}
+  .collect-btn em{font-size:18px;margin-right:5px;float:left;}
+  .back-icon{float:left;}
+  .title{float:left;}
+  .share-icon{width:16px;height:auto;margin-right:20px;}
+  .collect-icon{width:22px;height:auto;margin-right:10px;}
+  .hr{width:100%;margin-top:0.4rem;height:0.2rem;background: #eeeeee}
+}
